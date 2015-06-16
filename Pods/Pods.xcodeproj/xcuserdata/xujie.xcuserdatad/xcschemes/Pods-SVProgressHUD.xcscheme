@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A699609CF04D1326B66D7271"
-               BuildableName = "libPods-FlatUIKit.a"
-               BlueprintName = "Pods-FlatUIKit"
+               BlueprintIdentifier = "2A0BD7BBFC2A2C5AEE6A725B"
+               BuildableName = "libPods-SVProgressHUD.a"
+               BlueprintName = "Pods-SVProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

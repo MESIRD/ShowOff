@@ -1,2 +1,3 @@
 pod 'FlatUIKit'
+pod 'SVProgressHUD'
 
