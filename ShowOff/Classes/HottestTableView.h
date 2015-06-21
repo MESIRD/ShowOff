@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HottestTableView : UITableView
+@interface HottestTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
 @end

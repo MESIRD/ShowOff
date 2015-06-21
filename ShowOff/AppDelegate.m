@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeViewController.h"
+#import "FlatUIKit.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+//    HomeViewController *homeVC = [[HomeViewController alloc] init];
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeVC];
+//    [navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
+//    self.window.rootViewController = navigationController;
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor] highlightedColor:[UIColor belizeHoleColor] cornerRadius:3];
+    
     return YES;
 }
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewestTableView : UITableView
+@interface NewestTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
 @end

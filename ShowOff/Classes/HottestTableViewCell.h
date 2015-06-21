@@ -10,4 +10,6 @@
 
 @interface HottestTableViewCell : UITableViewCell
 
+- (void)configurePostWithImageURL:(NSURL *)imageURL andPostText:(NSString *)postText;
+
 @end

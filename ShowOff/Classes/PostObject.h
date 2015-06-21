@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface PostObject : NSObject
+
+- (NSArray *)postImages;
+- (NSString *)postText;
+- (User *)user;
+
+- (void)configurePostObjectWithUser:(User *)user postText:(NSString *)postText andPostImages:(NSArray *)postImages;
 
 @end

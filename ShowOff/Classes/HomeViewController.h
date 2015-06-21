@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewestTableView.h"
+#import "HottestTableView.h"
 
 @interface HomeViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet NewestTableView *newestTableView;
+@property (weak, nonatomic) IBOutlet HottestTableView *hottestTableView;
+
+
 
 @end

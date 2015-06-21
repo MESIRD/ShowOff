@@ -10,4 +10,12 @@
 
 @interface User : NSObject
 
++ (instancetype)userWithUserId:(NSString *)userId userName:(NSString *)userName andAvatarURL:(NSURL *)avatarURL;
+
+- (NSString *)userId;
+- (NSString *)userName;
+- (NSURL *)avatarURL;
+
+- (instancetype)initWithUserId:(NSString *)userId userName:(NSString *)userName andAvatarURL:(NSURL *)avatarURL;
+
 @end
