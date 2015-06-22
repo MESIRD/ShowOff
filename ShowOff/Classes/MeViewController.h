@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MeTableView.h"
 
 @interface MeViewController : UIViewController
+@property (strong, nonatomic) IBOutlet MeTableView *meTableView;
 
 @end

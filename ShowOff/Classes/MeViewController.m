@@ -8,26 +8,9 @@
 
 #import "MeViewController.h"
 #import "FlatUIKit.h"
+#import "Universal.h"
 
 @interface MeViewController ()
-
-//user information view
-@property (weak, nonatomic) IBOutlet UIImageView *userAvatar;
-@property (weak, nonatomic) IBOutlet UILabel *userName;
-@property (weak, nonatomic) IBOutlet UIView *userInformationView;
-
-//application feedback view
-@property (weak, nonatomic) IBOutlet UIView *applicationFeedbackView;
-
-//position view
-@property (weak, nonatomic) IBOutlet UIView *positionView;
-
-//setting view
-@property (weak, nonatomic) IBOutlet UIView *settingView;
-
-//logout view
-@property (weak, nonatomic) IBOutlet UIView *logoutView;
-
 
 @end
 
@@ -37,16 +20,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self.navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor cloudsColor]};
+    self.navigationItem.title = @"个人";
+
     
-    FUISwitch *flatSwitch = [[FUISwitch alloc] initWithFrame:CGRectMake(263, 9, 51, 31)];
-    flatSwitch.onColor = [UIColor turquoiseColor];
-    flatSwitch.offColor = [UIColor cloudsColor];
-    flatSwitch.onBackgroundColor = [UIColor midnightBlueColor];
-    flatSwitch.offBackgroundColor = [UIColor silverColor];
-    flatSwitch.offLabel.font = [UIFont boldFlatFontOfSize:14];
-    flatSwitch.onLabel.font = [UIFont boldFlatFontOfSize:14];
-    
-    [_positionView addSubview:flatSwitch];
     
 }
 

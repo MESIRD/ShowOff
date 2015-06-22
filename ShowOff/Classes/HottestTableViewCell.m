@@ -23,7 +23,7 @@
     // Initialization code
     
     _avatar.layer.cornerRadius = _avatar.frame.size.height/2;
-    _avatar.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    _avatar.layer.borderColor = [UIColor lightGrayColor].CGColor;
     _avatar.layer.borderWidth = 1.0f;
     _avatar.layer.masksToBounds = YES;
     

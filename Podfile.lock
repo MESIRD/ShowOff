@@ -20,18 +20,21 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AVOSCloud (3.1.2.4)
   - FlatUIKit (1.6.2)
   - MJRefresh (2.0.1)
   - SVProgressHUD (1.1.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - AVOSCloud (~> 3.1.2.4)
   - FlatUIKit
   - MJRefresh
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AVOSCloud: 83a2b0753eb784b2f6e5245241a841575dfb3cc6
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
   MJRefresh: ba114191a0ce34bcc9c1853aa1d3781532c9bc3f
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1

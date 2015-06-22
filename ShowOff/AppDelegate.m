@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import "MeViewController.h"
 #import "FlatUIKit.h"
 
 @interface AppDelegate ()
@@ -27,7 +28,7 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor] highlightedColor:[UIColor belizeHoleColor] cornerRadius:3];
+    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor turquoiseColor] highlightedColor:[UIColor belizeHoleColor] cornerRadius:3];
     
     return YES;
 }

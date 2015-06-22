@@ -88,7 +88,7 @@ static NSString * const reuseIdentifier = @"hottestCell";
     
     for (int i = 0; i < 20; i ++) {
         PostObject *postObject = [[PostObject alloc] init];
-        [postObject configurePostObjectWithUser:[User userWithUserId:@"1" userName:@"mesird" andAvatarURL:[NSURL URLWithString:@"http://img4.imgtn.bdimg.com/it/u=1002497239,3170408703&fm=11&gp=0.jpg"]] postText:@"今天中午食堂的饭感觉还不错！" andPostImages:nil];
+        [postObject configurePostObjectWithUser:[User userWithUserId:@"1" userName:@"mesird" andAvatarURL:[NSURL URLWithString:@"http://img.hb.aicdn.com/d0940f679931434c3e7a7559c8d3ec31f4032ebb7b99-JJhJdE_fw658"]] postText:@"今天中午食堂的饭感觉还不错！" andPostImages:nil];
         [_hottestPostArray addObject:postObject];
     }
 }

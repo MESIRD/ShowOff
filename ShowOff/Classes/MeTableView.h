@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MeTableView : UITableView
+@interface MeTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
 @end

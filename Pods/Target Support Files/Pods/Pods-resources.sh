@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "AVOSCloud/iOS/release-v3.1.2.4/AVOSCloud.framework/AVOSCloud.bundle"
   install_resource "FlatUIKit/Resources/flat-ui-icons-regular.ttf"
   install_resource "FlatUIKit/Resources/Lato-Bold.ttf"
   install_resource "FlatUIKit/Resources/Lato-Italic.ttf"
@@ -67,6 +68,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "AVOSCloud/iOS/release-v3.1.2.4/AVOSCloud.framework/AVOSCloud.bundle"
   install_resource "FlatUIKit/Resources/flat-ui-icons-regular.ttf"
   install_resource "FlatUIKit/Resources/Lato-Bold.ttf"
   install_resource "FlatUIKit/Resources/Lato-Italic.ttf"

@@ -10,4 +10,8 @@
 
 @interface MeUserInfoTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) IBOutlet UILabel *userName;
+
+
 @end

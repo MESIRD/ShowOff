@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MeSwitchTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UIImageView *icon;
+@property (strong, nonatomic) IBOutlet UILabel *title;
 
 @end

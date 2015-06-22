@@ -12,6 +12,11 @@
 		D73588AC1B2F3EF000BB80A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D73588AB1B2F3EF000BB80A6 /* Images.xcassets */; };
 		D73588AF1B2F3EF000BB80A6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D73588AD1B2F3EF000BB80A6 /* LaunchScreen.xib */; };
 		D73588BB1B2F3EF000BB80A6 /* ShowOffTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D73588BA1B2F3EF000BB80A6 /* ShowOffTests.m */; };
+		D79ACB521B37EAC700E01D01 /* MeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB511B37EAC700E01D01 /* MeTableView.m */; };
+		D79ACB551B37EBBD00E01D01 /* MeUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB541B37EBBD00E01D01 /* MeUserInfoTableViewCell.m */; };
+		D79ACB581B37EC6800E01D01 /* MeSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB571B37EC6800E01D01 /* MeSettingTableViewCell.m */; };
+		D79ACB5B1B37EC7800E01D01 /* MeSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */; };
+		D79ACB5D1B37F99500E01D01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D79ACB5C1B37F99500E01D01 /* Main.storyboard */; };
 		E3170038D6F342276A11F688 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBD072BB593FA35AFC4C539 /* libPods.a */; };
 		F58AFCAD1B33B50500E1AC4C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F58AFCAC1B33B50500E1AC4C /* Home.storyboard */; };
 		F58AFCB11B33B79300E1AC4C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCB01B33B79300E1AC4C /* HomeViewController.m */; };
@@ -51,6 +56,15 @@
 		D73588B41B2F3EF000BB80A6 /* ShowOffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowOffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73588B91B2F3EF000BB80A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D73588BA1B2F3EF000BB80A6 /* ShowOffTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowOffTests.m; sourceTree = "<group>"; };
+		D79ACB501B37EAC700E01D01 /* MeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeTableView.h; path = Classes/MeTableView.h; sourceTree = "<group>"; };
+		D79ACB511B37EAC700E01D01 /* MeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeTableView.m; path = Classes/MeTableView.m; sourceTree = "<group>"; };
+		D79ACB531B37EBBD00E01D01 /* MeUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeUserInfoTableViewCell.h; path = Classes/MeUserInfoTableViewCell.h; sourceTree = "<group>"; };
+		D79ACB541B37EBBD00E01D01 /* MeUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeUserInfoTableViewCell.m; path = Classes/MeUserInfoTableViewCell.m; sourceTree = "<group>"; };
+		D79ACB561B37EC6800E01D01 /* MeSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeSettingTableViewCell.h; path = Classes/MeSettingTableViewCell.h; sourceTree = "<group>"; };
+		D79ACB571B37EC6800E01D01 /* MeSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeSettingTableViewCell.m; path = Classes/MeSettingTableViewCell.m; sourceTree = "<group>"; };
+		D79ACB591B37EC7800E01D01 /* MeSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeSwitchTableViewCell.h; path = Classes/MeSwitchTableViewCell.h; sourceTree = "<group>"; };
+		D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeSwitchTableViewCell.m; path = Classes/MeSwitchTableViewCell.m; sourceTree = "<group>"; };
+		D79ACB5C1B37F99500E01D01 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F58AFCAC1B33B50500E1AC4C /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		F58AFCAF1B33B79300E1AC4C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Classes/HomeViewController.h; sourceTree = "<group>"; };
 		F58AFCB01B33B79300E1AC4C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Classes/HomeViewController.m; sourceTree = "<group>"; };
@@ -176,6 +190,7 @@
 				F58AFCAC1B33B50500E1AC4C /* Home.storyboard */,
 				D73588AD1B2F3EF000BB80A6 /* LaunchScreen.xib */,
 				F58AFCD81B341D6800E1AC4C /* Me.storyboard */,
+				D79ACB5C1B37F99500E01D01 /* Main.storyboard */,
 			);
 			name = StoryBoards;
 			sourceTree = "<group>";
@@ -298,6 +313,14 @@
 		F58AFCD61B341D5100E1AC4C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D79ACB501B37EAC700E01D01 /* MeTableView.h */,
+				D79ACB511B37EAC700E01D01 /* MeTableView.m */,
+				D79ACB531B37EBBD00E01D01 /* MeUserInfoTableViewCell.h */,
+				D79ACB541B37EBBD00E01D01 /* MeUserInfoTableViewCell.m */,
+				D79ACB561B37EC6800E01D01 /* MeSettingTableViewCell.h */,
+				D79ACB571B37EC6800E01D01 /* MeSettingTableViewCell.m */,
+				D79ACB591B37EC7800E01D01 /* MeSwitchTableViewCell.h */,
+				D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -391,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D79ACB5D1B37F99500E01D01 /* Main.storyboard in Resources */,
 				D73588AF1B2F3EF000BB80A6 /* LaunchScreen.xib in Resources */,
 				F58AFCC41B33BFF500E1AC4C /* HottestTableViewCell.xib in Resources */,
 				F58AFCD91B341D6800E1AC4C /* Me.storyboard in Resources */,
@@ -452,10 +476,14 @@
 				F58AFCD11B33E31000E1AC4C /* User.m in Sources */,
 				D73588A11B2F3EF000BB80A6 /* main.m in Sources */,
 				F58AFCDF1B343A4200E1AC4C /* MeViewController.m in Sources */,
+				D79ACB5B1B37EC7800E01D01 /* MeSwitchTableViewCell.m in Sources */,
 				F58AFCC21B33BCA600E1AC4C /* NewestTableViewCell.m in Sources */,
+				D79ACB581B37EC6800E01D01 /* MeSettingTableViewCell.m in Sources */,
 				F58AFCCC1B33E03100E1AC4C /* PostObject.m in Sources */,
 				F58AFCC71B33C01400E1AC4C /* HottestTableViewCell.m in Sources */,
+				D79ACB551B37EBBD00E01D01 /* MeUserInfoTableViewCell.m in Sources */,
 				F58AFCB11B33B79300E1AC4C /* HomeViewController.m in Sources */,
+				D79ACB521B37EAC700E01D01 /* MeTableView.m in Sources */,
 				F58AFCB71B33BA4400E1AC4C /* HottestTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

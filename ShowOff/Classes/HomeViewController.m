@@ -10,6 +10,7 @@
 #import "FlatUIKit.h"
 #import "MJRefresh.h"
 #import "MeViewController.h"
+#import "Universal.h"
 
 
 typedef NS_ENUM(NSInteger, PageName) {
@@ -32,23 +33,37 @@ typedef NS_ENUM(NSInteger, PageName) {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //set navigation bar color
     [self.navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
-    [self.tabBarController.tabBar setBarTintColor:[UIColor cloudsColor]];
-    self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y+19, self.tabBarController.tabBar.frame.size.width, 30);
+    
+    //set tab bar frame
+    self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y + 15, SCREEN_WIDTH, 34);
+    
+    //set tab bar shadow color
+    self.tabBarController.tabBar.shadowImage = [UIImage imageNamed:@"transparency"];
+    
+    //set tab bar item images to original color
+    UITabBarItem *homeItem = [self.tabBarController.tabBar.items objectAtIndex:0];
+    homeItem.image = [[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    homeItem.selectedImage = [[UIImage imageNamed:@"home_highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UITabBarItem *meItem = [self.tabBarController.tabBar.items objectAtIndex:1];
+    meItem.image = [[UIImage imageNamed:@"me"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    meItem.selectedImage = [[UIImage imageNamed:@"me_highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     //add segmentedControl
     FUISegmentedControl *segmentedControl = [[FUISegmentedControl alloc] initWithItems:@[@"热门", @"最新"]];
     
     segmentedControl.selectedFont = [UIFont boldFlatFontOfSize:12];
     segmentedControl.deselectedFont = [UIFont boldFlatFontOfSize:12];
-    segmentedControl.selectedColor = [UIColor peterRiverColor];
-    segmentedControl.highlightedColor = [UIColor peterRiverColor];
+    segmentedControl.selectedColor = [UIColor turquoiseColor];
+    segmentedControl.highlightedColor = [UIColor turquoiseColor];
     segmentedControl.deselectedColor = [UIColor clearColor];
-    segmentedControl.dividerColor = [UIColor midnightBlueColor];
+    segmentedControl.dividerColor = [UIColor turquoiseColor];
     segmentedControl.cornerRadius = 5.0;
-    segmentedControl.frame = CGRectMake(segmentedControl.frame.origin.x, segmentedControl.frame.origin.y, 100, 26);
+    segmentedControl.frame = CGRectMake(segmentedControl.frame.origin.x, segmentedControl.frame.origin.y, 100, 30);
     segmentedControl.borderWidth = 1.0f;
-    segmentedControl.borderColor = [UIColor peterRiverColor];
+    segmentedControl.borderColor = [UIColor turquoiseColor];
     segmentedControl.selectedSegmentIndex = 0;
     
     [segmentedControl addTarget:self action:@selector(exchangeHomePage) forControlEvents:UIControlEventValueChanged];
