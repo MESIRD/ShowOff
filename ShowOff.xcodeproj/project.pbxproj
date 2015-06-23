@@ -18,7 +18,15 @@
 		D79ACB5B1B37EC7800E01D01 /* MeSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */; };
 		D79ACB5D1B37F99500E01D01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D79ACB5C1B37F99500E01D01 /* Main.storyboard */; };
 		E3170038D6F342276A11F688 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBD072BB593FA35AFC4C539 /* libPods.a */; };
-		F58AFCAD1B33B50500E1AC4C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F58AFCAC1B33B50500E1AC4C /* Home.storyboard */; };
+		F57E462B1B38FF8E004D4DB6 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E462A1B38FF8E004D4DB6 /* Utils.m */; };
+		F57E462E1B3926E0004D4DB6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E462D1B3926E0004D4DB6 /* LoginViewController.m */; };
+		F57E46311B3934B4004D4DB6 /* UserNamePasswordInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E46301B3934B4004D4DB6 /* UserNamePasswordInputViewController.m */; };
+		F57E46331B3943E3004D4DB6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E46321B3943E3004D4DB6 /* SystemConfiguration.framework */; };
+		F57E46351B3943EA004D4DB6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E46341B3943EA004D4DB6 /* MobileCoreServices.framework */; };
+		F57E46371B3943F0004D4DB6 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E46361B3943F0004D4DB6 /* CoreTelephony.framework */; };
+		F57E46391B3943F5004D4DB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E46381B3943F5004D4DB6 /* CoreLocation.framework */; };
+		F57E463B1B3943FB004D4DB6 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E463A1B3943FB004D4DB6 /* libicucore.dylib */; };
+		F57E463D1B39440A004D4DB6 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E463C1B39440A004D4DB6 /* libc++.dylib */; };
 		F58AFCB11B33B79300E1AC4C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCB01B33B79300E1AC4C /* HomeViewController.m */; };
 		F58AFCB41B33B7BA00E1AC4C /* NewestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCB31B33B7BA00E1AC4C /* NewestTableView.m */; };
 		F58AFCB71B33BA4400E1AC4C /* HottestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCB61B33BA4400E1AC4C /* HottestTableView.m */; };
@@ -28,7 +36,6 @@
 		F58AFCC71B33C01400E1AC4C /* HottestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCC61B33C01400E1AC4C /* HottestTableViewCell.m */; };
 		F58AFCCC1B33E03100E1AC4C /* PostObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCCB1B33E03100E1AC4C /* PostObject.m */; };
 		F58AFCD11B33E31000E1AC4C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCD01B33E31000E1AC4C /* User.m */; };
-		F58AFCD91B341D6800E1AC4C /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F58AFCD81B341D6800E1AC4C /* Me.storyboard */; };
 		F58AFCDF1B343A4200E1AC4C /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCDE1B343A4200E1AC4C /* MeViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +72,18 @@
 		D79ACB591B37EC7800E01D01 /* MeSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeSwitchTableViewCell.h; path = Classes/MeSwitchTableViewCell.h; sourceTree = "<group>"; };
 		D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeSwitchTableViewCell.m; path = Classes/MeSwitchTableViewCell.m; sourceTree = "<group>"; };
 		D79ACB5C1B37F99500E01D01 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F58AFCAC1B33B50500E1AC4C /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		F57E46291B38FF8E004D4DB6 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		F57E462A1B38FF8E004D4DB6 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		F57E462C1B3926E0004D4DB6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Classes/LoginViewController.h; sourceTree = "<group>"; };
+		F57E462D1B3926E0004D4DB6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Classes/LoginViewController.m; sourceTree = "<group>"; };
+		F57E462F1B3934B4004D4DB6 /* UserNamePasswordInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNamePasswordInputViewController.h; path = Classes/UserNamePasswordInputViewController.h; sourceTree = "<group>"; };
+		F57E46301B3934B4004D4DB6 /* UserNamePasswordInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNamePasswordInputViewController.m; path = Classes/UserNamePasswordInputViewController.m; sourceTree = "<group>"; };
+		F57E46321B3943E3004D4DB6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F57E46341B3943EA004D4DB6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F57E46361B3943F0004D4DB6 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F57E46381B3943F5004D4DB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F57E463A1B3943FB004D4DB6 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		F57E463C1B39440A004D4DB6 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F58AFCAF1B33B79300E1AC4C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Classes/HomeViewController.h; sourceTree = "<group>"; };
 		F58AFCB01B33B79300E1AC4C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Classes/HomeViewController.m; sourceTree = "<group>"; };
 		F58AFCB21B33B7BA00E1AC4C /* NewestTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewestTableView.h; path = Classes/NewestTableView.h; sourceTree = "<group>"; };
@@ -83,7 +101,6 @@
 		F58AFCCB1B33E03100E1AC4C /* PostObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostObject.m; path = Classes/PostObject.m; sourceTree = "<group>"; };
 		F58AFCCF1B33E31000E1AC4C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Classes/User.h; sourceTree = "<group>"; };
 		F58AFCD01B33E31000E1AC4C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/User.m; sourceTree = "<group>"; };
-		F58AFCD81B341D6800E1AC4C /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		F58AFCDD1B343A4200E1AC4C /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeViewController.h; path = Classes/MeViewController.h; sourceTree = "<group>"; };
 		F58AFCDE1B343A4200E1AC4C /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeViewController.m; path = Classes/MeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +110,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F57E463D1B39440A004D4DB6 /* libc++.dylib in Frameworks */,
+				F57E463B1B3943FB004D4DB6 /* libicucore.dylib in Frameworks */,
+				F57E46391B3943F5004D4DB6 /* CoreLocation.framework in Frameworks */,
+				F57E46371B3943F0004D4DB6 /* CoreTelephony.framework in Frameworks */,
+				F57E46351B3943EA004D4DB6 /* MobileCoreServices.framework in Frameworks */,
+				F57E46331B3943E3004D4DB6 /* SystemConfiguration.framework in Frameworks */,
 				E3170038D6F342276A11F688 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,6 +142,12 @@
 		CC5385E823CBB54B6BC82FA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F57E463C1B39440A004D4DB6 /* libc++.dylib */,
+				F57E463A1B3943FB004D4DB6 /* libicucore.dylib */,
+				F57E46381B3943F5004D4DB6 /* CoreLocation.framework */,
+				F57E46361B3943F0004D4DB6 /* CoreTelephony.framework */,
+				F57E46341B3943EA004D4DB6 /* MobileCoreServices.framework */,
+				F57E46321B3943E3004D4DB6 /* SystemConfiguration.framework */,
 				4FBD072BB593FA35AFC4C539 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -148,6 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				F58AFCC81B33C26C00E1AC4C /* Universal.h */,
+				F57E46291B38FF8E004D4DB6 /* Utils.h */,
+				F57E462A1B38FF8E004D4DB6 /* Utils.m */,
 				D73588A21B2F3EF000BB80A6 /* AppDelegate.h */,
 				D73588A31B2F3EF000BB80A6 /* AppDelegate.m */,
 				F58AFCAE1B33B71300E1AC4C /* Classes */,
@@ -187,9 +218,7 @@
 		F53DB0B81B2FB442008CC34F /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
-				F58AFCAC1B33B50500E1AC4C /* Home.storyboard */,
 				D73588AD1B2F3EF000BB80A6 /* LaunchScreen.xib */,
-				F58AFCD81B341D6800E1AC4C /* Me.storyboard */,
 				D79ACB5C1B37F99500E01D01 /* Main.storyboard */,
 			);
 			name = StoryBoards;
@@ -304,6 +333,10 @@
 		F58AFCD51B341D4700E1AC4C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F57E462F1B3934B4004D4DB6 /* UserNamePasswordInputViewController.h */,
+				F57E46301B3934B4004D4DB6 /* UserNamePasswordInputViewController.m */,
+				F57E462C1B3926E0004D4DB6 /* LoginViewController.h */,
+				F57E462D1B3926E0004D4DB6 /* LoginViewController.m */,
 				F58AFCDD1B343A4200E1AC4C /* MeViewController.h */,
 				F58AFCDE1B343A4200E1AC4C /* MeViewController.m */,
 			);
@@ -417,10 +450,8 @@
 				D79ACB5D1B37F99500E01D01 /* Main.storyboard in Resources */,
 				D73588AF1B2F3EF000BB80A6 /* LaunchScreen.xib in Resources */,
 				F58AFCC41B33BFF500E1AC4C /* HottestTableViewCell.xib in Resources */,
-				F58AFCD91B341D6800E1AC4C /* Me.storyboard in Resources */,
 				F58AFCBD1B33BC2D00E1AC4C /* NewestTableViewCell.xib in Resources */,
 				D73588AC1B2F3EF000BB80A6 /* Images.xcassets in Resources */,
-				F58AFCAD1B33B50500E1AC4C /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,9 +505,12 @@
 				F58AFCB41B33B7BA00E1AC4C /* NewestTableView.m in Sources */,
 				D73588A41B2F3EF000BB80A6 /* AppDelegate.m in Sources */,
 				F58AFCD11B33E31000E1AC4C /* User.m in Sources */,
+				F57E462B1B38FF8E004D4DB6 /* Utils.m in Sources */,
 				D73588A11B2F3EF000BB80A6 /* main.m in Sources */,
 				F58AFCDF1B343A4200E1AC4C /* MeViewController.m in Sources */,
 				D79ACB5B1B37EC7800E01D01 /* MeSwitchTableViewCell.m in Sources */,
+				F57E462E1B3926E0004D4DB6 /* LoginViewController.m in Sources */,
+				F57E46311B3934B4004D4DB6 /* UserNamePasswordInputViewController.m in Sources */,
 				F58AFCC21B33BCA600E1AC4C /* NewestTableViewCell.m in Sources */,
 				D79ACB581B37EC6800E01D01 /* MeSettingTableViewCell.m in Sources */,
 				F58AFCCC1B33E03100E1AC4C /* PostObject.m in Sources */,

@@ -10,14 +10,21 @@
 #import "MeUserInfoTableViewCell.h"
 #import "MeSettingTableViewCell.h"
 #import "MeSwitchTableViewCell.h"
+#import "Utils.h"
+#import "FlatUIKit.h"
+#import <objc/runtime.h>
+#import <AVOSCloud/AVOSCloud.h>
 
-@interface MeTableView()
+static const char AlertObjectKey;
+
+@interface MeTableView() <UIAlertViewDelegate>
 
 @property (nonatomic)   NSArray *settingGroup;
 
 @end
 
 @implementation MeTableView
+
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     
@@ -61,7 +68,7 @@
             cell = [[MeUserInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"meUserInfoCell"];
         }
         cell.avatar.image = [UIImage imageNamed:_settingGroup[indexPath.section][indexPath.row][0]];
-        cell.userName.text = _settingGroup[indexPath.section][indexPath.row][1];
+        cell.userName.text = [[AVUser currentUser] username];
         return cell;
     } else if ( indexPath.section == 1) {
         //
@@ -115,12 +122,14 @@
     switch (indexPath.section) {
         case 0:
             //user info
+            
             break;
         case 1:
             //settings
             break;
         case 2:
             //logout
+            [self showLogoutAlertView];
             break;
         default:
             break;
@@ -155,6 +164,59 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     return 20;
+}
+
+#pragma mark - UIAlertView delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    void (^clickButtonAtIndex)(NSInteger) = objc_getAssociatedObject(alertView, &AlertObjectKey);
+    clickButtonAtIndex(buttonIndex);
+}
+
+#pragma mark - User Interaction Call Backs
+
+- (void)showLogoutAlertView {
+    
+    FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"警告"
+                                                          message:@"确认要退出登录吗?"
+                                                         delegate:self cancelButtonTitle:nil
+                                                otherButtonTitles:@"确认", @"取消", nil];
+    alertView.titleLabel.textColor = [UIColor cloudsColor];
+    alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    alertView.messageLabel.textColor = [UIColor cloudsColor];
+    alertView.messageLabel.font = [UIFont flatFontOfSize:14];
+    alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+    alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
+    alertView.defaultButtonColor = [UIColor cloudsColor];
+    alertView.defaultButtonShadowColor = [UIColor asbestosColor];
+    alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
+    alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+    
+    void (^clickButtonAtIndex)(NSInteger) = ^(NSInteger index) {
+        switch (index) {
+            case 0:
+                [self userLogout];
+                break;
+            case 1:
+                break;
+            default:
+                break;
+        }
+    };
+    objc_setAssociatedObject(alertView, &AlertObjectKey, clickButtonAtIndex, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [alertView show];
+}
+
+- (void)userLogout {
+    
+    if ( [AVUser currentUser]) {
+        [AVUser logOut];
+        //hide user information table view
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"User Logout" object:nil];
+    } else {
+        NSLog(@"Logout Log : The user has not logined!");
+    }
 }
 
 @end

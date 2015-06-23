@@ -9,6 +9,10 @@
 #import "MeViewController.h"
 #import "FlatUIKit.h"
 #import "Universal.h"
+#import "UserNamePasswordInputViewController.h"
+#import "LoginViewController.h"
+#import "Utils.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface MeViewController ()
 
@@ -23,9 +27,58 @@
     [self.navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor cloudsColor]};
     self.navigationItem.title = @"个人";
+    
+    //add login and register buttons
+    FUIButton *loginButton = [[FUIButton alloc] initWithFrame:CGRectMake(0.2 * SCREEN_WIDTH, 0.5 * SCREEN_HEIGHT, 80, 40)];
+    [Utils configureFUIButton:loginButton withTitle:@"登录" target:self andAction:@selector(turnToLoginPage)];
+    
+    FUIButton *registerButton = [[FUIButton alloc] initWithFrame:CGRectMake(0.6 * SCREEN_WIDTH, 0.5 * SCREEN_HEIGHT, 80, 40)];
+    [Utils configureFUIButton:registerButton withTitle:@"注册" target:self andAction:@selector(turnToRegisterPage)];
+    
+    [_unlogView addSubview:loginButton];
+    [_unlogView addSubview:registerButton];
 
+    if ([AVUser currentUser]) {
+        [_unlogView setHidden:YES];
+        [_meTableView setHidden:NO];
+    } else {
+        [_meTableView setHidden:YES];
+        [_unlogView setHidden:NO];
+    }
     
     
+    //reigster notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLogin) name:@"User Login" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLogout) name:@"User Logout" object:nil];
+}
+
+- (void)turnToLoginPage {
+    
+    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)turnToRegisterPage {
+    
+    UserNamePasswordInputViewController *userNamePasswordInputViewController = [[UserNamePasswordInputViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userNamePasswordInputViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)userLogin {
+    
+    self.navigationItem.title = [[AVUser currentUser] username];
+    [_meTableView setHidden:NO];
+    [_meTableView reloadData];
+    [_unlogView setHidden:YES];
+}
+
+- (void)userLogout {
+
+    self.navigationItem.title = @"个人";
+    [_meTableView setHidden:YES];
+    [_unlogView setHidden:NO];
 }
 
 

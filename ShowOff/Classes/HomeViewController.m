@@ -11,6 +11,7 @@
 #import "MJRefresh.h"
 #import "MeViewController.h"
 #import "Universal.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 
 typedef NS_ENUM(NSInteger, PageName) {
@@ -47,7 +48,11 @@ typedef NS_ENUM(NSInteger, PageName) {
     homeItem.image = [[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     homeItem.selectedImage = [[UIImage imageNamed:@"home_highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    UITabBarItem *meItem = [self.tabBarController.tabBar.items objectAtIndex:1];
+    UITabBarItem *notificationItem = [self.tabBarController.tabBar.items objectAtIndex:1];
+    notificationItem.image = [[UIImage imageNamed:@"notification"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    notificationItem.selectedImage = [[UIImage imageNamed:@"notification_highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UITabBarItem *meItem = [self.tabBarController.tabBar.items objectAtIndex:2];
     meItem.image = [[UIImage imageNamed:@"me"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     meItem.selectedImage = [[UIImage imageNamed:@"me_highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
@@ -84,6 +89,11 @@ typedef NS_ENUM(NSInteger, PageName) {
     //hide one table view
     currentPageName = HOTTEST_PAGE;
     [_newestTableView setHidden:YES];
+    
+    //LeanCloud test object
+//    AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
+//    [testObject setObject:@"bar" forKey:@"foo"];
+//    [testObject save];
 
 }
 

@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import "MeViewController.h"
 #import "FlatUIKit.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface AppDelegate ()
 
@@ -21,10 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    HomeViewController *homeVC = [[HomeViewController alloc] init];
-//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeVC];
-//    [navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
-//    self.window.rootViewController = navigationController;
+    [AVOSCloud setApplicationId:@"ul4sv1ch418fqxfvp7l4et3hskty7lawywxpiioch0fcgxok"
+                      clientKey:@"6cg0di76vel7yyzxpkor09fgoc69pmtiitkga9oum926n4c8"];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     

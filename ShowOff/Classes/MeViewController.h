@@ -11,5 +11,6 @@
 
 @interface MeViewController : UIViewController
 @property (strong, nonatomic) IBOutlet MeTableView *meTableView;
+@property (weak, nonatomic) IBOutlet UIView *unlogView;
 
 @end
