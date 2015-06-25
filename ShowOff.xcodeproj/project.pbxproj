@@ -12,6 +12,7 @@
 		D73588AC1B2F3EF000BB80A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D73588AB1B2F3EF000BB80A6 /* Images.xcassets */; };
 		D73588AF1B2F3EF000BB80A6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D73588AD1B2F3EF000BB80A6 /* LaunchScreen.xib */; };
 		D73588BB1B2F3EF000BB80A6 /* ShowOffTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D73588BA1B2F3EF000BB80A6 /* ShowOffTests.m */; };
+		D77D23511B3C693800C24C23 /* ColorChangeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D77D23501B3C693800C24C23 /* ColorChangeCollectionViewController.m */; };
 		D79ACB521B37EAC700E01D01 /* MeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB511B37EAC700E01D01 /* MeTableView.m */; };
 		D79ACB551B37EBBD00E01D01 /* MeUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB541B37EBBD00E01D01 /* MeUserInfoTableViewCell.m */; };
 		D79ACB581B37EC6800E01D01 /* MeSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB571B37EC6800E01D01 /* MeSettingTableViewCell.m */; };
@@ -79,6 +80,8 @@
 		D73588B41B2F3EF000BB80A6 /* ShowOffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowOffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73588B91B2F3EF000BB80A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D73588BA1B2F3EF000BB80A6 /* ShowOffTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowOffTests.m; sourceTree = "<group>"; };
+		D77D234F1B3C693800C24C23 /* ColorChangeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorChangeCollectionViewController.h; path = Classes/ColorChangeCollectionViewController.h; sourceTree = "<group>"; };
+		D77D23501B3C693800C24C23 /* ColorChangeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorChangeCollectionViewController.m; path = Classes/ColorChangeCollectionViewController.m; sourceTree = "<group>"; };
 		D79ACB501B37EAC700E01D01 /* MeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeTableView.h; path = Classes/MeTableView.h; sourceTree = "<group>"; };
 		D79ACB511B37EAC700E01D01 /* MeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeTableView.m; path = Classes/MeTableView.m; sourceTree = "<group>"; };
 		D79ACB531B37EBBD00E01D01 /* MeUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeUserInfoTableViewCell.h; path = Classes/MeUserInfoTableViewCell.h; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				F5E00E5F1B3B129C00ACE6B6 /* GenderChangeTableViewController.m */,
 				F58BBA121B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.h */,
 				F58BBA131B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.m */,
+				D77D234F1B3C693800C24C23 /* ColorChangeCollectionViewController.h */,
+				D77D23501B3C693800C24C23 /* ColorChangeCollectionViewController.m */,
 			);
 			name = MeInfo;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 				F5E00E601B3B129C00ACE6B6 /* GenderChangeTableViewController.m in Sources */,
 				D79ACB521B37EAC700E01D01 /* MeTableView.m in Sources */,
 				F58AFCB71B33BA4400E1AC4C /* HottestTableView.m in Sources */,
+				D77D23511B3C693800C24C23 /* ColorChangeCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +761,7 @@
 			baseConfigurationReference = 0520A53065392D164C05272A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ShowOff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -767,6 +774,7 @@
 			baseConfigurationReference = 4EB331DC72A19A2559A59DA0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ShowOff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

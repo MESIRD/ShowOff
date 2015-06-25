@@ -112,6 +112,7 @@ static NSString * const reuseIdentifier = @"genderCell";
 
 - (void)updateGender:(NSString *)gender {
     
+    [self.tableView setUserInteractionEnabled:NO];
     AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
     [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
     AVObject *obj = [query findObjects][0];
@@ -124,6 +125,7 @@ static NSString * const reuseIdentifier = @"genderCell";
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
+            [self.tableView setUserInteractionEnabled:YES];
             [Utils showFailOperationWithTitle:@"保存失败!\n请检查网络设置." inSeconds:2 followedByOperation:nil];
         }
     }];

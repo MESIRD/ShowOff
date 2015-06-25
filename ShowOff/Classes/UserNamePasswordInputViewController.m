@@ -122,6 +122,7 @@
             [obj setObject:@"保密" forKey:@"userSexualOrientation"];
             [obj setObject:@0 forKey:@"viewNumber"];
             [obj setObject:@0 forKey:@"appreciateNumber"];
+            [obj setObject:[AVUser currentUser] forKey:@"belongedUser"];
             [obj saveInBackground];
             
             //login user

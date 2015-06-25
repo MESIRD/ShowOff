@@ -61,6 +61,8 @@
         return ;
     }
     
+    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
+    [_meDescription setUserInteractionEnabled:NO];
     AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
     [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
     AVObject *obj = [query findObjects][0];
@@ -73,6 +75,8 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
+            [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+            [_meDescription setUserInteractionEnabled:YES];
             [Utils showFailOperationWithTitle:@"保存失败!\n请检查描述内容或网络设置." inSeconds:2 followedByOperation:nil];
         }
     }];
