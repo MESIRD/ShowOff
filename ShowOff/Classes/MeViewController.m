@@ -28,6 +28,7 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor cloudsColor]};
     self.navigationItem.title = @"个人";
     
+    
     //add login and register buttons
     FUIButton *loginButton = [[FUIButton alloc] initWithFrame:CGRectMake(0.2 * SCREEN_WIDTH, 0.5 * SCREEN_HEIGHT, 80, 40)];
     [Utils configureFUIButton:loginButton withTitle:@"登录" target:self andAction:@selector(turnToLoginPage)];
@@ -68,7 +69,6 @@
 
 - (void)userLogin {
     
-    self.navigationItem.title = [[AVUser currentUser] username];
     [_meTableView setHidden:NO];
     [_meTableView reloadData];
     [_unlogView setHidden:YES];
@@ -76,7 +76,6 @@
 
 - (void)userLogout {
 
-    self.navigationItem.title = @"个人";
     [_meTableView setHidden:YES];
     [_unlogView setHidden:NO];
 }

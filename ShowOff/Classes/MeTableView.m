@@ -10,8 +10,10 @@
 #import "MeUserInfoTableViewCell.h"
 #import "MeSettingTableViewCell.h"
 #import "MeSwitchTableViewCell.h"
+#import "UserPreference.h"
 #import "Utils.h"
-#import "FlatUIKit.h"
+#import <FlatUIKit/FlatUIKit.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import <objc/runtime.h>
 #import <AVOSCloud/AVOSCloud.h>
 
@@ -31,22 +33,37 @@ static const char AlertObjectKey;
     self = [super initWithCoder:aDecoder];
     if ( self) {
         
-        //init group
-        _settingGroup = [[NSArray alloc] initWithObjects: @[@[@"default_avatar", @"mesird"]], @[@[@"position", @"开启定位"], @[@"setting", @"应用设置"], @[@"feedback", @"应用反馈"]], @[@[@"logout", @"退出"]], nil];
-        
-        //set separator insets
-//        [self setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+        if ( [AVUser currentUser]) {
+            [self setTableData];
+        }
         
         //table footer view configuration
         self.tableFooterView = [[UIView alloc] init];
-
+        
         //set delegate and dataSource
         self.delegate = self;
         self.dataSource = self;
         
         [self reloadData];
+        
+        //register notification
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setTableData) name:@"Change Nick Name" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setTableData) name:@"User Login" object:nil];
     }
     return self;
+}
+
+- (void)setTableData {
+    
+    NSString *userAvatarURL = [[UserPreference sharedUserPreference] userAvatarURL];
+    NSString *userNickName = [[UserPreference sharedUserPreference] userNickName];
+    //update group
+    _settingGroup = @[@[@[userAvatarURL, userNickName]],
+                      @[@[@"position", @"开启定位"],
+                        @[@"setting", @"应用设置"],
+                        @[@"feedback", @"应用反馈"]],
+                      @[@[@"logout", @"退出"]]];
+    [self reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -67,8 +84,8 @@ static const char AlertObjectKey;
         if ( cell == nil) {
             cell = [[MeUserInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"meUserInfoCell"];
         }
-        cell.avatar.image = [UIImage imageNamed:_settingGroup[indexPath.section][indexPath.row][0]];
-        cell.userName.text = [[AVUser currentUser] username];
+        [cell.avatar setImageWithURL:[NSURL URLWithString:_settingGroup[indexPath.section][indexPath.row][0]] placeholderImage:[UIImage imageNamed:@"default_avatar"]];
+        cell.userName.text = _settingGroup[indexPath.section][indexPath.row][1];
         return cell;
     } else if ( indexPath.section == 1) {
         //
@@ -212,6 +229,10 @@ static const char AlertObjectKey;
     
     if ( [AVUser currentUser]) {
         [AVUser logOut];
+        
+        //remove user preference from use defaults
+        [UserPreference removeUserPreferenceInUserDefaults];
+        
         //hide user information table view
         [[NSNotificationCenter defaultCenter] postNotificationName:@"User Logout" object:nil];
     } else {

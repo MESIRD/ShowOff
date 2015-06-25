@@ -37,6 +37,22 @@
 		F58AFCCC1B33E03100E1AC4C /* PostObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCCB1B33E03100E1AC4C /* PostObject.m */; };
 		F58AFCD11B33E31000E1AC4C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCD01B33E31000E1AC4C /* User.m */; };
 		F58AFCDF1B343A4200E1AC4C /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCDE1B343A4200E1AC4C /* MeViewController.m */; };
+		F58BBA111B3BE5FE00D2BD52 /* GenderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58BBA101B3BE5FE00D2BD52 /* GenderTableViewCell.m */; };
+		F58BBA141B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58BBA131B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.m */; };
+		F58BBA171B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58BBA161B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.m */; };
+		F58C51491B3A83D000DEDE11 /* MeInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C51481B3A83D000DEDE11 /* MeInfoTableViewCell.xib */; };
+		F58C514F1B3A85DC00DEDE11 /* MeInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C514E1B3A85DC00DEDE11 /* MeInfoTableViewCell.m */; };
+		F58C51521B3A863C00DEDE11 /* MeInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C51511B3A863C00DEDE11 /* MeInfoTableView.m */; };
+		F58C51561B3A92F000DEDE11 /* MeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C51551B3A92F000DEDE11 /* MeInfoViewController.m */; };
+		F58C515A1B3AA3D100DEDE11 /* MeInfoSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C51591B3AA3D100DEDE11 /* MeInfoSettingTableViewController.m */; };
+		F58C515D1B3AAD5100DEDE11 /* MeInfoImageChangeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C515C1B3AAD5100DEDE11 /* MeInfoImageChangeTableViewCell.m */; };
+		F58C51601B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C515F1B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.m */; };
+		F58C51631B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C51621B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.m */; };
+		F58C51661B3AB39D00DEDE11 /* NickNameChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C51651B3AB39D00DEDE11 /* NickNameChangeViewController.m */; };
+		F58C51691B3AD64800DEDE11 /* DescriptionChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C51681B3AD64800DEDE11 /* DescriptionChangeViewController.m */; };
+		F58C51701B3ADDA800DEDE11 /* MSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C516F1B3ADDA800DEDE11 /* MSDTextView.m */; };
+		F5A0143E1B3B9DA6000CB1B7 /* UserPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A0143D1B3B9DA6000CB1B7 /* UserPreference.m */; };
+		F5E00E601B3B129C00ACE6B6 /* GenderChangeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E00E5F1B3B129C00ACE6B6 /* GenderChangeTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +119,37 @@
 		F58AFCD01B33E31000E1AC4C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/User.m; sourceTree = "<group>"; };
 		F58AFCDD1B343A4200E1AC4C /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeViewController.h; path = Classes/MeViewController.h; sourceTree = "<group>"; };
 		F58AFCDE1B343A4200E1AC4C /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeViewController.m; path = Classes/MeViewController.m; sourceTree = "<group>"; };
+		F58BBA0F1B3BE5FE00D2BD52 /* GenderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenderTableViewCell.h; path = Classes/GenderTableViewCell.h; sourceTree = "<group>"; };
+		F58BBA101B3BE5FE00D2BD52 /* GenderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenderTableViewCell.m; path = Classes/GenderTableViewCell.m; sourceTree = "<group>"; };
+		F58BBA121B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SexualOrientationChangeTableViewController.h; path = Classes/SexualOrientationChangeTableViewController.h; sourceTree = "<group>"; };
+		F58BBA131B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SexualOrientationChangeTableViewController.m; path = Classes/SexualOrientationChangeTableViewController.m; sourceTree = "<group>"; };
+		F58BBA151B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SexualOrientationTableViewCell.h; path = Classes/SexualOrientationTableViewCell.h; sourceTree = "<group>"; };
+		F58BBA161B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SexualOrientationTableViewCell.m; path = Classes/SexualOrientationTableViewCell.m; sourceTree = "<group>"; };
+		F58C51481B3A83D000DEDE11 /* MeInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeInfoTableViewCell.xib; sourceTree = "<group>"; };
+		F58C514D1B3A85DC00DEDE11 /* MeInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeInfoTableViewCell.h; path = Classes/MeInfoTableViewCell.h; sourceTree = "<group>"; };
+		F58C514E1B3A85DC00DEDE11 /* MeInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeInfoTableViewCell.m; path = Classes/MeInfoTableViewCell.m; sourceTree = "<group>"; };
+		F58C51501B3A863C00DEDE11 /* MeInfoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeInfoTableView.h; path = Classes/MeInfoTableView.h; sourceTree = "<group>"; };
+		F58C51511B3A863C00DEDE11 /* MeInfoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeInfoTableView.m; path = Classes/MeInfoTableView.m; sourceTree = "<group>"; };
+		F58C51541B3A92F000DEDE11 /* MeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeInfoViewController.h; path = Classes/MeInfoViewController.h; sourceTree = "<group>"; };
+		F58C51551B3A92F000DEDE11 /* MeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeInfoViewController.m; path = Classes/MeInfoViewController.m; sourceTree = "<group>"; };
+		F58C51581B3AA3D100DEDE11 /* MeInfoSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeInfoSettingTableViewController.h; path = Classes/MeInfoSettingTableViewController.h; sourceTree = "<group>"; };
+		F58C51591B3AA3D100DEDE11 /* MeInfoSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeInfoSettingTableViewController.m; path = Classes/MeInfoSettingTableViewController.m; sourceTree = "<group>"; };
+		F58C515B1B3AAD5100DEDE11 /* MeInfoImageChangeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeInfoImageChangeTableViewCell.h; path = Classes/MeInfoImageChangeTableViewCell.h; sourceTree = "<group>"; };
+		F58C515C1B3AAD5100DEDE11 /* MeInfoImageChangeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeInfoImageChangeTableViewCell.m; path = Classes/MeInfoImageChangeTableViewCell.m; sourceTree = "<group>"; };
+		F58C515E1B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeInfoSettingIndicatorTableViewCell.h; path = Classes/MeInfoSettingIndicatorTableViewCell.h; sourceTree = "<group>"; };
+		F58C515F1B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeInfoSettingIndicatorTableViewCell.m; path = Classes/MeInfoSettingIndicatorTableViewCell.m; sourceTree = "<group>"; };
+		F58C51611B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeInfoSettingTableViewCell.h; path = Classes/MeInfoSettingTableViewCell.h; sourceTree = "<group>"; };
+		F58C51621B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeInfoSettingTableViewCell.m; path = Classes/MeInfoSettingTableViewCell.m; sourceTree = "<group>"; };
+		F58C51641B3AB39D00DEDE11 /* NickNameChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NickNameChangeViewController.h; path = Classes/NickNameChangeViewController.h; sourceTree = "<group>"; };
+		F58C51651B3AB39D00DEDE11 /* NickNameChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NickNameChangeViewController.m; path = Classes/NickNameChangeViewController.m; sourceTree = "<group>"; };
+		F58C51671B3AD64800DEDE11 /* DescriptionChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DescriptionChangeViewController.h; path = Classes/DescriptionChangeViewController.h; sourceTree = "<group>"; };
+		F58C51681B3AD64800DEDE11 /* DescriptionChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DescriptionChangeViewController.m; path = Classes/DescriptionChangeViewController.m; sourceTree = "<group>"; };
+		F58C516E1B3ADDA800DEDE11 /* MSDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSDTextView.h; path = Classes/MSDTextView.h; sourceTree = "<group>"; };
+		F58C516F1B3ADDA800DEDE11 /* MSDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSDTextView.m; path = Classes/MSDTextView.m; sourceTree = "<group>"; };
+		F5A0143C1B3B9DA6000CB1B7 /* UserPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPreference.h; path = Classes/UserPreference.h; sourceTree = "<group>"; };
+		F5A0143D1B3B9DA6000CB1B7 /* UserPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPreference.m; path = Classes/UserPreference.m; sourceTree = "<group>"; };
+		F5E00E5E1B3B129C00ACE6B6 /* GenderChangeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenderChangeTableViewController.h; path = Classes/GenderChangeTableViewController.h; sourceTree = "<group>"; };
+		F5E00E5F1B3B129C00ACE6B6 /* GenderChangeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenderChangeTableViewController.m; path = Classes/GenderChangeTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +338,7 @@
 		F58AFCCD1B33E2F400E1AC4C /* Universal */ = {
 			isa = PBXGroup;
 			children = (
+				F58C516A1B3ADC9000DEDE11 /* MSDTextView */,
 				F58AFCCE1B33E2FD00E1AC4C /* Objects */,
 			);
 			name = Universal;
@@ -301,6 +349,8 @@
 			children = (
 				F58AFCCF1B33E31000E1AC4C /* User.h */,
 				F58AFCD01B33E31000E1AC4C /* User.m */,
+				F5A0143C1B3B9DA6000CB1B7 /* UserPreference.h */,
+				F5A0143D1B3B9DA6000CB1B7 /* UserPreference.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -326,6 +376,7 @@
 		F58AFCD41B341D4000E1AC4C /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
+				F58C51481B3A83D000DEDE11 /* MeInfoTableViewCell.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -339,6 +390,7 @@
 				F57E462D1B3926E0004D4DB6 /* LoginViewController.m */,
 				F58AFCDD1B343A4200E1AC4C /* MeViewController.h */,
 				F58AFCDE1B343A4200E1AC4C /* MeViewController.m */,
+				F58C51571B3A92F400DEDE11 /* MeInfo */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -354,6 +406,7 @@
 				D79ACB571B37EC6800E01D01 /* MeSettingTableViewCell.m */,
 				D79ACB591B37EC7800E01D01 /* MeSwitchTableViewCell.h */,
 				D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */,
+				F58C51531B3A864800DEDE11 /* MeInfo */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -363,6 +416,55 @@
 			children = (
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		F58C51531B3A864800DEDE11 /* MeInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F58C51501B3A863C00DEDE11 /* MeInfoTableView.h */,
+				F58C51511B3A863C00DEDE11 /* MeInfoTableView.m */,
+				F58C514D1B3A85DC00DEDE11 /* MeInfoTableViewCell.h */,
+				F58C514E1B3A85DC00DEDE11 /* MeInfoTableViewCell.m */,
+				F58C515B1B3AAD5100DEDE11 /* MeInfoImageChangeTableViewCell.h */,
+				F58C515C1B3AAD5100DEDE11 /* MeInfoImageChangeTableViewCell.m */,
+				F58C515E1B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.h */,
+				F58C515F1B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.m */,
+				F58C51611B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.h */,
+				F58C51621B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.m */,
+				F58BBA0F1B3BE5FE00D2BD52 /* GenderTableViewCell.h */,
+				F58BBA101B3BE5FE00D2BD52 /* GenderTableViewCell.m */,
+				F58BBA151B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.h */,
+				F58BBA161B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.m */,
+			);
+			name = MeInfo;
+			sourceTree = "<group>";
+		};
+		F58C51571B3A92F400DEDE11 /* MeInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F58C51541B3A92F000DEDE11 /* MeInfoViewController.h */,
+				F58C51551B3A92F000DEDE11 /* MeInfoViewController.m */,
+				F58C51581B3AA3D100DEDE11 /* MeInfoSettingTableViewController.h */,
+				F58C51591B3AA3D100DEDE11 /* MeInfoSettingTableViewController.m */,
+				F58C51641B3AB39D00DEDE11 /* NickNameChangeViewController.h */,
+				F58C51651B3AB39D00DEDE11 /* NickNameChangeViewController.m */,
+				F58C51671B3AD64800DEDE11 /* DescriptionChangeViewController.h */,
+				F58C51681B3AD64800DEDE11 /* DescriptionChangeViewController.m */,
+				F5E00E5E1B3B129C00ACE6B6 /* GenderChangeTableViewController.h */,
+				F5E00E5F1B3B129C00ACE6B6 /* GenderChangeTableViewController.m */,
+				F58BBA121B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.h */,
+				F58BBA131B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.m */,
+			);
+			name = MeInfo;
+			sourceTree = "<group>";
+		};
+		F58C516A1B3ADC9000DEDE11 /* MSDTextView */ = {
+			isa = PBXGroup;
+			children = (
+				F58C516E1B3ADDA800DEDE11 /* MSDTextView.h */,
+				F58C516F1B3ADDA800DEDE11 /* MSDTextView.m */,
+			);
+			name = MSDTextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +553,7 @@
 				D73588AF1B2F3EF000BB80A6 /* LaunchScreen.xib in Resources */,
 				F58AFCC41B33BFF500E1AC4C /* HottestTableViewCell.xib in Resources */,
 				F58AFCBD1B33BC2D00E1AC4C /* NewestTableViewCell.xib in Resources */,
+				F58C51491B3A83D000DEDE11 /* MeInfoTableViewCell.xib in Resources */,
 				D73588AC1B2F3EF000BB80A6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,20 +606,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				F58AFCB41B33B7BA00E1AC4C /* NewestTableView.m in Sources */,
+				F58C51521B3A863C00DEDE11 /* MeInfoTableView.m in Sources */,
 				D73588A41B2F3EF000BB80A6 /* AppDelegate.m in Sources */,
+				F5A0143E1B3B9DA6000CB1B7 /* UserPreference.m in Sources */,
+				F58C51631B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.m in Sources */,
+				F58C51601B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.m in Sources */,
+				F58C51661B3AB39D00DEDE11 /* NickNameChangeViewController.m in Sources */,
 				F58AFCD11B33E31000E1AC4C /* User.m in Sources */,
 				F57E462B1B38FF8E004D4DB6 /* Utils.m in Sources */,
+				F58C515A1B3AA3D100DEDE11 /* MeInfoSettingTableViewController.m in Sources */,
 				D73588A11B2F3EF000BB80A6 /* main.m in Sources */,
 				F58AFCDF1B343A4200E1AC4C /* MeViewController.m in Sources */,
+				F58C51701B3ADDA800DEDE11 /* MSDTextView.m in Sources */,
 				D79ACB5B1B37EC7800E01D01 /* MeSwitchTableViewCell.m in Sources */,
 				F57E462E1B3926E0004D4DB6 /* LoginViewController.m in Sources */,
 				F57E46311B3934B4004D4DB6 /* UserNamePasswordInputViewController.m in Sources */,
+				F58BBA111B3BE5FE00D2BD52 /* GenderTableViewCell.m in Sources */,
+				F58C514F1B3A85DC00DEDE11 /* MeInfoTableViewCell.m in Sources */,
 				F58AFCC21B33BCA600E1AC4C /* NewestTableViewCell.m in Sources */,
+				F58C51561B3A92F000DEDE11 /* MeInfoViewController.m in Sources */,
 				D79ACB581B37EC6800E01D01 /* MeSettingTableViewCell.m in Sources */,
 				F58AFCCC1B33E03100E1AC4C /* PostObject.m in Sources */,
 				F58AFCC71B33C01400E1AC4C /* HottestTableViewCell.m in Sources */,
+				F58C51691B3AD64800DEDE11 /* DescriptionChangeViewController.m in Sources */,
+				F58BBA171B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.m in Sources */,
 				D79ACB551B37EBBD00E01D01 /* MeUserInfoTableViewCell.m in Sources */,
+				F58C515D1B3AAD5100DEDE11 /* MeInfoImageChangeTableViewCell.m in Sources */,
+				F58BBA141B3BFAA000D2BD52 /* SexualOrientationChangeTableViewController.m in Sources */,
 				F58AFCB11B33B79300E1AC4C /* HomeViewController.m in Sources */,
+				F5E00E601B3B129C00ACE6B6 /* GenderChangeTableViewController.m in Sources */,
 				D79ACB521B37EAC700E01D01 /* MeTableView.m in Sources */,
 				F58AFCB71B33BA4400E1AC4C /* HottestTableView.m in Sources */,
 			);
@@ -638,6 +756,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShowOff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -649,6 +768,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShowOff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

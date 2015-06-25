@@ -50,6 +50,19 @@
     textField.cornerRadius = 3.0f;
 }
 
++ (UIImage *)getImageFilledByColor:(UIColor *)color {
+    
+    CGRect imageRect = CGRectMake(0, 0, 50, 50);
+    UIGraphicsBeginImageContext(imageRect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, imageRect);
+    UIImage *retImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return retImage;
+    
+}
+
 + (void)showFlatAlertView:(NSString *)title andMessage:(NSString *)message {
     
     FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:title
@@ -121,6 +134,14 @@
 + (BOOL)isEmptyTextField:(UITextField *)textField {
     
     if ( [textField.text isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)isEmptyTextView:(UITextView *)textView {
+    
+    if ( [textView.text isEqualToString:@""]) {
         return YES;
     }
     return NO;

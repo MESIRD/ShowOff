@@ -27,7 +27,8 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor turquoiseColor] highlightedColor:[UIColor belizeHoleColor] cornerRadius:3];
+//    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor turquoiseColor] highlightedColor:[UIColor belizeHoleColor] cornerRadius:3];
+    
     
     return YES;
 }

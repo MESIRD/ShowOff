@@ -15,12 +15,20 @@ typedef void (^VoidOperationBlock)(void);
 
 @interface Utils : NSObject
 + (Utils *)defaultUtils;
+
 + (void)configureFUIButton:(FUIButton *)button withTitle:(NSString *)title target:(id)target andAction:(SEL)action;
 + (void)configureFUITextField:(FUITextField *)textField withPlaceHolder:(NSString *)placeHolder;
+
++ (UIImage *)getImageFilledByColor:(UIColor *)color;
+
 + (void)showFlatAlertView:(NSString *)title andMessage:(NSString *)message;
 + (void)showSuccessOperationWithTitle:(NSString *)title inSeconds:(unsigned int)seconds followedByOperation:(VoidOperationBlock)operation;
 + (void)showFailOperationWithTitle:(NSString *)title inSeconds:(unsigned int)seconds followedByOperation:(VoidOperationBlock)operation;
+
 + (BOOL)judgePhoneNumberValidation:(NSString *)phoneNumber;
+
 + (BOOL)isEmptyTextField:(UITextField *)textField;
++ (BOOL)isEmptyTextView:(UITextView *)textView;
+
 
 @end

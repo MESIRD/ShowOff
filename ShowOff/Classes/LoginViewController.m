@@ -7,8 +7,9 @@
 //
 
 #import "LoginViewController.h"
-#import "FlatUIKit.h"
 #import "Utils.h"
+#import "UserPreference.h"
+#import <FlatUIKit/FlatUIKit.h>
 #import <AVOSCloud/AVOSCloud.h>
 
 @interface LoginViewController () <UITextFieldDelegate>
@@ -90,8 +91,20 @@
     NSError *error = nil;
     [AVUser logInWithUsername:_userName.text password:_password.text error:&error];
     if ( error == nil) {
-        [Utils showSuccessOperationWithTitle:@"登录成功!" inSeconds:1 followedByOperation:^{
+        [Utils showSuccessOperationWithTitle:@"登录成功!" inSeconds:2 followedByOperation:^{
+            
+            //store user preference in user defaults
+            AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
+            [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                UserPreference *userPreference = [[UserPreference alloc] initWithAVObject:objects[0]];
+                [userPreference storeUserPreferenceInUserDefaults];
+            }];
+            
+            //post notification
             [[NSNotificationCenter defaultCenter] postNotificationName:@"User Login" object:nil];
+            
+            //pop view controller
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
     } else {
