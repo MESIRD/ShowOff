@@ -108,7 +108,8 @@ static NSString * const reuseIdentifier = @"sexualOrientationCell";
 
 - (void)updateSexualOrientation:(NSString *)sexualOrientation {
 
-    [self.tableView setUserInteractionEnabled:NO];
+
+    [Utils showProcessingOperation];
     AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
     [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
     AVObject *obj = [query findObjects][0];
@@ -116,13 +117,14 @@ static NSString * const reuseIdentifier = @"sexualOrientationCell";
     [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if ( succeeded) {
             [[UserPreference sharedUserPreference] setUserSexualOrientation:sexualOrientation];
+            [[UserPreference sharedUserPreference] storeUserPreferenceInUserDefaults];
+            [Utils hideProcessingOperation];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Change Sexual Orientation" object:nil];
-            [Utils showSuccessOperationWithTitle:@"保存成功!" inSeconds:2 followedByOperation:^{
+            [Utils showSuccessOperationWithTitle:@"修改成功!" inSeconds:2 followedByOperation:^{
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
-            [self.tableView setUserInteractionEnabled:YES];
-            [Utils showFailOperationWithTitle:@"保存失败!\n请检查网络设置." inSeconds:2 followedByOperation:nil];
+            [Utils showFailOperationWithTitle:@"修改失败!\n请检查网络设置." inSeconds:2 followedByOperation:nil];
         }
     }];
 }

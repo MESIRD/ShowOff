@@ -7,22 +7,28 @@
 //
 
 #import "MeInfoSettingTableViewController.h"
+//cells
 #import "MeInfoImageChangeTableViewCell.h"
 #import "MeInfoSettingIndicatorTableViewCell.h"
 #import "MeInfoSettingTableViewCell.h"
+//cell view controllers
 #import "NickNameChangeViewController.h"
 #import "DescriptionChangeViewController.h"
 #import "GenderChangeTableViewController.h"
 #import "SexualOrientationChangeTableViewController.h"
-#import "UIImageView+AFNetworking.h"
+#import "ColorChangeCollectionViewController.h"
+//tools
 #import "Utils.h"
+#import "UserPreference.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import <AVOSCloud/AVOSCloud.h>
 
 
-@interface MeInfoSettingTableViewController ()
+@interface MeInfoSettingTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic)   NSArray *meInfoSettingGroup;
 @property (nonatomic)   AVObject *userPreference;
+@property (nonatomic)   UIImagePickerController *imagePicker;
 
 @end
 
@@ -37,24 +43,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //initialize data source group
-    
-    AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
-    [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
-    _userPreference = [query findObjects][0];
-    _meInfoSettingGroup = @[@[@[@"更改头像",    [_userPreference objectForKey:@"userAvatarURL"]],
-                              @[@"更改背景色",  [_userPreference objectForKey:@"userBackgroundColor"]]],
-                            @[@[@"昵称",        [_userPreference objectForKey:@"userNickName"]],
-                              @[@"描述",        [_userPreference objectForKey:@"userDescription"]],
-                              @[@"用户名",      [[AVUser currentUser] username]]],
-                            @[@[@"性别",        [_userPreference objectForKey:@"userGender"]],
-                              @[@"性取向",      [_userPreference objectForKey:@"userSexualOrientation"]]]];
-    
     //set navigationitem title
     self.navigationItem.title = @"设置";
     
     //set tableview footer view
     [self.tableView setTableFooterView:[[UIView alloc] init]];
+    
+    //initialize image picker
+    [self configureImagePicker];
+    
+    //initialize data source group
+    [self updateTableData];
     
     //register notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableData) name:@"Change Nick Name"          object:nil];
@@ -63,26 +62,128 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableData) name:@"Change Description"        object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableData) name:@"Change Gender"             object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableData) name:@"Change Sexual Orientation" object:nil];
-
-    [self.tableView reloadData];
 }
 
 - (void)updateTableData {
     
-    [_userPreference refresh];
-    _meInfoSettingGroup = @[@[@[@"更改头像",    [_userPreference objectForKey:@"userAvatarURL"]],
-                              @[@"更改背景色",  [_userPreference objectForKey:@"userBackgroundColor"]]],
-                            @[@[@"昵称",        [_userPreference objectForKey:@"userNickName"]],
-                              @[@"描述",        [_userPreference objectForKey:@"userDescription"]],
+    _meInfoSettingGroup = @[@[@[@"更改头像",    [[UserPreference sharedUserPreference] userAvatarURL]],
+                              @[@"更改背景色",  [[UserPreference sharedUserPreference] userBackgroundColor]]],
+                            @[@[@"昵称",        [[UserPreference sharedUserPreference] userNickName]],
+                              @[@"描述",        [[UserPreference sharedUserPreference] userDescription]],
                               @[@"用户名",      [[AVUser currentUser] username]]],
-                            @[@[@"性别",        [_userPreference objectForKey:@"userGender"]],
-                              @[@"性取向",      [_userPreference objectForKey:@"userSexualOrientation"]]]];
+                            @[@[@"性别",        [[UserPreference sharedUserPreference] userGender]],
+                              @[@"性取向",      [[UserPreference sharedUserPreference] userSexualOrientation]]]];
     [self.tableView reloadData];
+}
+
+- (void)configureImagePicker {
+    
+    _imagePicker = [[UIImagePickerController alloc] init];
+    _imagePicker.delegate = self;
+    _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    _imagePicker.allowsEditing = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Image Picker Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if ( image == nil) {
+        
+        //(fail to select image)do not need upload image
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    } else {
+        
+        //(successfully select)upload image to server
+        [Utils showProcessingOperation];
+        if ( UIImagePNGRepresentation(image)) {
+            //this image is a png format image
+            //judge whether there is an avatar image in the server to the given user
+            AVQuery *query = [AVQuery queryWithClassName:@"_File"];
+            [query whereKey:@"name" hasPrefix:[NSString stringWithFormat:@"avatar_%@", [[AVUser currentUser] username]]];
+            NSInteger count = [query countObjects];
+            if ( count == 0) {
+                //user hasn't uploaded avatar yet, this is the first time
+                NSData *imageData = UIImagePNGRepresentation(image);
+                [self uploadAvatarImage:imageData];
+            } else {
+                //user had uploaded avatar once, this is not the first time
+                AVFile *imageFile = (AVFile *)[query getFirstObject];
+                [imageFile deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if ( succeeded) {
+                        NSData *imageData = UIImagePNGRepresentation(image);
+                        [self uploadAvatarImage:imageData];
+                    } else {
+                        [Utils hideProcessingOperation];
+                        NSLog(@"delete original avatar fail");
+                    }
+                }];
+            }
+        } else {
+            //this image is a jepg format image
+            //judge whether there is an avatar image in the server to the given user
+            AVQuery *query = [AVQuery queryWithClassName:@"_File"];
+            [query whereKey:@"name" hasPrefix:[NSString stringWithFormat:@"avatar_%@", [[AVUser currentUser] username]]];
+            NSInteger count = [query countObjects];
+            if ( count == 0) {
+                //user hasn't uploaded avatar yet, this is the first time
+                NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                [self uploadAvatarImage:imageData];
+            } else {
+                //user had uploaded avatar once, this is not the first time
+                AVFile *imageFile = (AVFile *)[query getFirstObject];
+                [imageFile deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if ( succeeded) {
+                        NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                        [self uploadAvatarImage:imageData];
+                    } else {
+                        [Utils hideProcessingOperation];
+                        NSLog(@"delete original avatar fail");
+                    }
+                }];
+            }
+        }
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)uploadAvatarImage:(NSData *)imageData {
+    
+    AVFile *imageFile = [AVFile fileWithName:[NSString stringWithFormat:@"avatar_%@.png", [[AVUser currentUser] username]] data:imageData];
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if ( succeeded) {
+            AVQuery *queryUP = [AVQuery queryWithClassName:@"UserPreference"];
+            [queryUP whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
+            AVObject *obj = [queryUP getFirstObject];
+            [obj setObject:[imageFile url] forKey:@"userAvatarURL"];
+            [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if ( succeeded) {
+                    [Utils hideProcessingOperation];
+                    [[UserPreference sharedUserPreference] setUserAvatarURL:[imageFile url]];
+                    [[UserPreference sharedUserPreference] storeUserPreferenceInUserDefaults];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"Change Avatar" object:nil];
+                    [Utils showSuccessOperationWithTitle:@"头像上传成功!" inSeconds:2 followedByOperation:nil];
+                } else {
+                    [Utils hideProcessingOperation];
+                    NSLog(@"update avatar url fail");
+                }
+            }];
+        } else {
+            [Utils hideProcessingOperation];
+            [Utils showFlatAlertView:@"错误" andMessage:@"头像上传失败!\n请检查网络设置"];
+        }
+    }];
 }
 
 #pragma mark - Table view data source
@@ -164,7 +265,18 @@
     switch (indexPath.section) {
         case 0:
             //avatar change
-            //show imagepicker
+            switch (indexPath.row) {
+                case 0:
+                    //show imagepicker
+                    [self presentViewController:_imagePicker animated:YES completion:nil];
+                    break;
+                case 1:
+                    //background color
+                    [self showBackgroundColorChangeViewController];
+                    break;
+                default:
+                    break;
+            }
             break;
         case 1:
             switch (indexPath.row) {
@@ -274,6 +386,14 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     SexualOrientationChangeTableViewController *vc = [sb instantiateViewControllerWithIdentifier:@"SexualOrientationChangeTableViewController"];
     vc.selectedOption = _meInfoSettingGroup[2][1][1];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)showBackgroundColorChangeViewController {
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    ColorChangeCollectionViewController *vc = [sb instantiateViewControllerWithIdentifier:@"ColorChangeCollectionViewController"];
+    vc.selectedColor = _meInfoSettingGroup[0][1][1];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

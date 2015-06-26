@@ -97,6 +97,9 @@
     user.username = _userName.text;
     user.password = _password.text;
     user.mobilePhoneNumber = _phoneNumber;
+    
+    [Utils showProcessingOperation];
+    
     NSError *error = nil;
     if ( [user signUp:&error]) {
         [Utils showSuccessOperationWithTitle:@"注册成功!" inSeconds:1 followedByOperation:^{
@@ -141,6 +144,8 @@
                 //post notification
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"User Login" object:nil];
             }
+            
+            [Utils hideProcessingOperation];
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
     } else {

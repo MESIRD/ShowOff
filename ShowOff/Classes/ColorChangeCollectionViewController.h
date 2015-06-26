@@ -10,4 +10,6 @@
 
 @interface ColorChangeCollectionViewController : UICollectionViewController
 
+@property (nonatomic, assign) NSString *selectedColor;
+
 @end

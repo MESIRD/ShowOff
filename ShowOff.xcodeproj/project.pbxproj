@@ -19,6 +19,9 @@
 		D79ACB5B1B37EC7800E01D01 /* MeSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */; };
 		D79ACB5D1B37F99500E01D01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D79ACB5C1B37F99500E01D01 /* Main.storyboard */; };
 		E3170038D6F342276A11F688 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBD072BB593FA35AFC4C539 /* libPods.a */; };
+		F5334DE31B3D47FE00FE9502 /* AppSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE21B3D47FE00FE9502 /* AppSettingTableViewController.m */; };
+		F5334DE61B3D485600FE9502 /* AppSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE51B3D485600FE9502 /* AppSettingTableViewCell.m */; };
+		F5334DEA1B3D55E700FE9502 /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE91B3D55E700FE9502 /* PasswordChangeViewController.m */; };
 		F57E462B1B38FF8E004D4DB6 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E462A1B38FF8E004D4DB6 /* Utils.m */; };
 		F57E462E1B3926E0004D4DB6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E462D1B3926E0004D4DB6 /* LoginViewController.m */; };
 		F57E46311B3934B4004D4DB6 /* UserNamePasswordInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E46301B3934B4004D4DB6 /* UserNamePasswordInputViewController.m */; };
@@ -91,6 +94,12 @@
 		D79ACB591B37EC7800E01D01 /* MeSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeSwitchTableViewCell.h; path = Classes/MeSwitchTableViewCell.h; sourceTree = "<group>"; };
 		D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeSwitchTableViewCell.m; path = Classes/MeSwitchTableViewCell.m; sourceTree = "<group>"; };
 		D79ACB5C1B37F99500E01D01 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F5334DE11B3D47FE00FE9502 /* AppSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSettingTableViewController.h; path = Classes/AppSettingTableViewController.h; sourceTree = "<group>"; };
+		F5334DE21B3D47FE00FE9502 /* AppSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppSettingTableViewController.m; path = Classes/AppSettingTableViewController.m; sourceTree = "<group>"; };
+		F5334DE41B3D485600FE9502 /* AppSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSettingTableViewCell.h; path = Classes/AppSettingTableViewCell.h; sourceTree = "<group>"; };
+		F5334DE51B3D485600FE9502 /* AppSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppSettingTableViewCell.m; path = Classes/AppSettingTableViewCell.m; sourceTree = "<group>"; };
+		F5334DE81B3D55E700FE9502 /* PasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordChangeViewController.h; path = Classes/PasswordChangeViewController.h; sourceTree = "<group>"; };
+		F5334DE91B3D55E700FE9502 /* PasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasswordChangeViewController.m; path = Classes/PasswordChangeViewController.m; sourceTree = "<group>"; };
 		F57E46291B38FF8E004D4DB6 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		F57E462A1B38FF8E004D4DB6 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		F57E462C1B3926E0004D4DB6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Classes/LoginViewController.h; sourceTree = "<group>"; };
@@ -265,6 +274,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F5334DDF1B3D47A100FE9502 /* AppSetting */ = {
+			isa = PBXGroup;
+			children = (
+				F5334DE41B3D485600FE9502 /* AppSettingTableViewCell.h */,
+				F5334DE51B3D485600FE9502 /* AppSettingTableViewCell.m */,
+			);
+			name = AppSetting;
+			sourceTree = "<group>";
+		};
+		F5334DE01B3D47BF00FE9502 /* AppSetting */ = {
+			isa = PBXGroup;
+			children = (
+				F5334DE11B3D47FE00FE9502 /* AppSettingTableViewController.h */,
+				F5334DE21B3D47FE00FE9502 /* AppSettingTableViewController.m */,
+				F5334DE81B3D55E700FE9502 /* PasswordChangeViewController.h */,
+				F5334DE91B3D55E700FE9502 /* PasswordChangeViewController.m */,
+			);
+			name = AppSetting;
+			sourceTree = "<group>";
+		};
 		F53DB0B81B2FB442008CC34F /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +423,7 @@
 				F58AFCDD1B343A4200E1AC4C /* MeViewController.h */,
 				F58AFCDE1B343A4200E1AC4C /* MeViewController.m */,
 				F58C51571B3A92F400DEDE11 /* MeInfo */,
+				F5334DE01B3D47BF00FE9502 /* AppSetting */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -410,6 +440,7 @@
 				D79ACB591B37EC7800E01D01 /* MeSwitchTableViewCell.h */,
 				D79ACB5A1B37EC7800E01D01 /* MeSwitchTableViewCell.m */,
 				F58C51531B3A864800DEDE11 /* MeInfo */,
+				F5334DDF1B3D47A100FE9502 /* AppSetting */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -614,6 +645,7 @@
 				F58C51521B3A863C00DEDE11 /* MeInfoTableView.m in Sources */,
 				D73588A41B2F3EF000BB80A6 /* AppDelegate.m in Sources */,
 				F5A0143E1B3B9DA6000CB1B7 /* UserPreference.m in Sources */,
+				F5334DE31B3D47FE00FE9502 /* AppSettingTableViewController.m in Sources */,
 				F58C51631B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.m in Sources */,
 				F58C51601B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.m in Sources */,
 				F58C51661B3AB39D00DEDE11 /* NickNameChangeViewController.m in Sources */,
@@ -631,8 +663,10 @@
 				F58AFCC21B33BCA600E1AC4C /* NewestTableViewCell.m in Sources */,
 				F58C51561B3A92F000DEDE11 /* MeInfoViewController.m in Sources */,
 				D79ACB581B37EC6800E01D01 /* MeSettingTableViewCell.m in Sources */,
+				F5334DE61B3D485600FE9502 /* AppSettingTableViewCell.m in Sources */,
 				F58AFCCC1B33E03100E1AC4C /* PostObject.m in Sources */,
 				F58AFCC71B33C01400E1AC4C /* HottestTableViewCell.m in Sources */,
+				F5334DEA1B3D55E700FE9502 /* PasswordChangeViewController.m in Sources */,
 				F58C51691B3AD64800DEDE11 /* DescriptionChangeViewController.m in Sources */,
 				F58BBA171B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.m in Sources */,
 				D79ACB551B37EBBD00E01D01 /* MeUserInfoTableViewCell.m in Sources */,

@@ -82,6 +82,21 @@
     [alertView show];
 }
 
++ (void)showProcessingOperation {
+    
+    [SVProgressHUD setBackgroundColor:[UIColor turquoiseColor]];
+    [SVProgressHUD setForegroundColor:[UIColor cloudsColor]];
+    [SVProgressHUD setRingThickness:4.0];
+    [SVProgressHUD show];
+}
+
++ (void)hideProcessingOperation {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
+}
+
 + (void)showSuccessOperationWithTitle:(NSString *)title inSeconds:(unsigned int)seconds followedByOperation:(VoidOperationBlock)operation {
 
     [SVProgressHUD setBackgroundColor:[UIColor turquoiseColor]];
@@ -90,8 +105,9 @@
     [SVProgressHUD setSuccessImage:[UIImage imageNamed:@"correct"]];
     [SVProgressHUD showSuccessWithStatus:title];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sleep(2);
+        
         dispatch_async(dispatch_get_main_queue(), ^{
+            sleep(2);
             [SVProgressHUD dismiss];
             if ( operation != nil) {
                 operation();
@@ -109,8 +125,9 @@
     [SVProgressHUD setErrorImage:[UIImage imageNamed:@"error"]];
     [SVProgressHUD showErrorWithStatus:title];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sleep(2);
+
         dispatch_async(dispatch_get_main_queue(), ^{
+            sleep(2);
             [SVProgressHUD dismiss];
             if ( operation != nil) {
                 operation();
@@ -145,6 +162,17 @@
         return YES;
     }
     return NO;
+}
+
++ (UIViewController *)viewControllerWithEmbededView:(UIView *)view {
+    
+    for (UIView *superView = view.superview; superView; superView = superView.superview) {
+        UIResponder *responder = [superView nextResponder];
+        if ( [responder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+    }
+    return nil;
 }
 
 @end

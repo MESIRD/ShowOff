@@ -44,10 +44,11 @@
     [_unPostView setHidden:YES];    
     
     //register notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoPosts)       name:@"Me Post Number Zero" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNickName)    name:@"Change Nick Name"    object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDescription) name:@"Change Description"  object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAvatar)      name:@"Change Avatar"       object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoPosts)       name:@"Me Post Number Zero"     object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNickName)    name:@"Change Nick Name"        object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDescription) name:@"Change Description"      object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAvatar)      name:@"Change Avatar"           object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBackgroundColor)      name:@"Change Background Color" object:nil];
 }
 
 - (void)updateNickName {
@@ -65,17 +66,25 @@
     [_avatar setImageWithURL:[NSURL URLWithString:[[UserPreference sharedUserPreference] userAvatarURL]] placeholderImage:[UIImage imageNamed:@"default_avatar_circle"]];
 }
 
+- (void)updateBackgroundColor {
+    
+    NSArray *rgb = [[[UserPreference sharedUserPreference] userBackgroundColor] componentsSeparatedByString:@","];
+    [_backgroundImage setImage:[Utils getImageFilledByColor:[UIColor colorWithRed:[rgb[0] floatValue]/255 green:[rgb[1] floatValue]/255 blue:[rgb[2] floatValue]/255 alpha:1]]];
+}
+
 - (void)configureHeaderView {
     
-    AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
-    [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
-    AVObject *userPreference = [query findObjects][0];
-    _nickName.text = [userPreference objectForKey:@"userNickName"];
-    _userDescription.text = [userPreference objectForKey:@"userDescription"];
-    [_avatar setImageWithURL:[NSURL URLWithString:[userPreference objectForKey:@"userAvatarURL"]] placeholderImage:[UIImage imageNamed:@"default_avatar_circle"]];
-    _viewNumber.text = [NSString stringWithFormat:@"%@", [userPreference objectForKey:@"viewNumber"]];
-    _appreciateNumber.text = [NSString stringWithFormat:@"%@", [userPreference objectForKey:@"appreciateNumber"]];
-    NSArray *rgb = [[userPreference objectForKey:@"userBackgroundColor"] componentsSeparatedByString:@","];
+    _nickName.text = [[UserPreference sharedUserPreference] userNickName];
+    _userDescription.text = [[UserPreference sharedUserPreference] userDescription];
+    _avatar.layer.cornerRadius = _avatar.frame.size.height/2;
+    _avatar.layer.masksToBounds = YES;
+    _avatar.layer.borderColor = [UIColor cloudsColor].CGColor;
+    _avatar.layer.borderWidth = 3.0;
+    _avatar.contentMode = UIViewContentModeScaleAspectFill;
+    [_avatar setImageWithURL:[NSURL URLWithString:[[UserPreference sharedUserPreference] userAvatarURL]] placeholderImage:[UIImage imageNamed:@"default+avatar_circle"]];
+    _viewNumber.text = [NSString stringWithFormat:@"%ld", [[UserPreference sharedUserPreference] viewNumber]];
+    _appreciateNumber.text = [NSString stringWithFormat:@"%ld", [[UserPreference sharedUserPreference] appreciateNumber]];
+    NSArray *rgb = [[[UserPreference sharedUserPreference] userBackgroundColor] componentsSeparatedByString:@","];
     _backgroundImage.image = [Utils getImageFilledByColor:[UIColor colorWithRed:[rgb[0] floatValue]/255 green:[rgb[1] floatValue]/255 blue:[rgb[2] floatValue]/255 alpha:1]];
 }
 

@@ -10,15 +10,11 @@
 
 @implementation MeUserInfoTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (void)awakeFromNib {
     
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if ( self) {
-        
-        _avatar.layer.cornerRadius = 5;
-        _avatar.layer.masksToBounds = YES;
-    }
-    return self;
+    _avatar.layer.cornerRadius = 5;
+    _avatar.layer.masksToBounds = YES;
+    _avatar.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 @end

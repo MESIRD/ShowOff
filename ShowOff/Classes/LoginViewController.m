@@ -88,6 +88,7 @@
         return ;
     }
     
+    [Utils showProcessingOperation];
     NSError *error = nil;
     [AVUser logInWithUsername:_userName.text password:_password.text error:&error];
     if ( error == nil) {
@@ -95,13 +96,14 @@
         //store user preference in user defaults
         AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
         [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            UserPreference *userPreference = [[UserPreference alloc] initWithAVObject:objects[0]];
-            [userPreference storeUserPreferenceInUserDefaults];
-        }];
+        AVObject *obj = [query getFirstObject];
+        UserPreference *userPreference = [[UserPreference alloc] initWithAVObject:obj];
+        [userPreference storeUserPreferenceInUserDefaults];
         
         //post notification
         [[NSNotificationCenter defaultCenter] postNotificationName:@"User Login" object:nil];
+        
+        [Utils hideProcessingOperation];
         
         //show login success
         [Utils showSuccessOperationWithTitle:@"登录成功!" inSeconds:2 followedByOperation:^{
@@ -111,7 +113,19 @@
         }];
     } else {
         NSLog(@"Login Log : %@", error);
-        [Utils showFlatAlertView:@"警告" andMessage:@"用户名或密码错误!"];
+        [Utils hideProcessingOperation];
+        switch ([[[error userInfo] objectForKey:@"code"] integerValue]) {
+            case 210:
+                //username and password mismatch
+                [Utils showFlatAlertView:@"警告" andMessage:@"用户名与密码不匹配!"];
+                break;
+            case 211:
+                //could not find user
+                [Utils showFlatAlertView:@"警告" andMessage:@"用户名不存在!"];
+                break;
+            default:
+                break;
+        }
     }
 }
 

@@ -10,6 +10,9 @@
 #import "MeUserInfoTableViewCell.h"
 #import "MeSettingTableViewCell.h"
 #import "MeSwitchTableViewCell.h"
+
+#import "AppSettingTableViewController.h"
+
 #import "UserPreference.h"
 #import "Utils.h"
 #import <FlatUIKit/FlatUIKit.h>
@@ -47,8 +50,10 @@ static const char AlertObjectKey;
         [self reloadData];
         
         //register notification
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setTableData) name:@"Change Avatar"    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setTableData) name:@"Change Nick Name" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setTableData) name:@"User Login" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setTableData) name:@"User Login"       object:nil];
+
     }
     return self;
 }
@@ -127,6 +132,7 @@ static const char AlertObjectKey;
         case 1:
         case 2:
             return 50;
+            break;
         default:
             return 0;
             break;
@@ -139,10 +145,29 @@ static const char AlertObjectKey;
     switch (indexPath.section) {
         case 0:
             //user info
-            
             break;
         case 1:
             //settings
+            switch (indexPath.row) {
+                case 0:
+                    //position
+                    //nothing to do here
+                    break;
+                case 1: {
+                    //application setting
+                    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                    AppSettingTableViewController *targetVC = [sb instantiateViewControllerWithIdentifier:@"AppSettingTableViewController"];
+                    UIViewController *currentVC = [Utils viewControllerWithEmbededView:self];
+                    [currentVC.navigationController pushViewController:targetVC animated:YES];
+                    break;
+                }
+                case 2:
+                    //application feedback
+                    
+                    break;
+                default:
+                    break;
+            }
             break;
         case 2:
             //logout

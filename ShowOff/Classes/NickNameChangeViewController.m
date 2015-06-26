@@ -54,8 +54,12 @@
         return ;
     }
     
-    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
-    [_nickName setUserInteractionEnabled:NO];
+    if ( [_currentNickName isEqualToString:_nickName.text]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return ;
+    }
+    
+    [Utils showProcessingOperation];
     AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
     [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
     AVObject *obj = [query findObjects][0];
@@ -63,14 +67,14 @@
     [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if ( succeeded) {
             [[UserPreference sharedUserPreference] setUserNickName:_nickName.text];
+            [[UserPreference sharedUserPreference] storeUserPreferenceInUserDefaults];
+            [Utils hideProcessingOperation];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Change Nick Name" object:nil];
-            [Utils showSuccessOperationWithTitle:@"保存成功!" inSeconds:2 followedByOperation:^{
+            [Utils showSuccessOperationWithTitle:@"修改成功!" inSeconds:2 followedByOperation:^{
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
-            [self.navigationController.navigationBar setUserInteractionEnabled:YES];
-            [_nickName setUserInteractionEnabled:YES];
-            [Utils showFailOperationWithTitle:@"保存失败!\n请检查昵称或网络设置." inSeconds:2 followedByOperation:nil];
+            [Utils showFailOperationWithTitle:@"修改失败!\n请检查昵称或网络设置." inSeconds:2 followedByOperation:nil];
         }
     }];
 }

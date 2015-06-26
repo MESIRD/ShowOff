@@ -61,8 +61,13 @@
         return ;
     }
     
-    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
-    [_meDescription setUserInteractionEnabled:NO];
+    if ( [_currentUserDescription isEqualToString:_meDescription.text]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return ;
+    }
+    
+
+    [Utils showProcessingOperation];
     AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
     [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
     AVObject *obj = [query findObjects][0];
@@ -70,14 +75,14 @@
     [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if ( succeeded) {
             [[UserPreference sharedUserPreference] setUserDescription:_meDescription.text];
+            [[UserPreference sharedUserPreference] storeUserPreferenceInUserDefaults];
+            [Utils hideProcessingOperation];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Change Description" object:nil];
-            [Utils showSuccessOperationWithTitle:@"保存成功!" inSeconds:2 followedByOperation:^{
+            [Utils showSuccessOperationWithTitle:@"修改成功!" inSeconds:2 followedByOperation:^{
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
-            [self.navigationController.navigationBar setUserInteractionEnabled:YES];
-            [_meDescription setUserInteractionEnabled:YES];
-            [Utils showFailOperationWithTitle:@"保存失败!\n请检查描述内容或网络设置." inSeconds:2 followedByOperation:nil];
+            [Utils showFailOperationWithTitle:@"修改失败!\n请检查描述内容或网络设置." inSeconds:2 followedByOperation:nil];
         }
     }];
 }

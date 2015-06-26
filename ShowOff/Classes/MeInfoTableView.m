@@ -35,6 +35,7 @@ static NSString * const reuseIdentifier = @"meInfoTableViewCell";
         self.dataSource = self;
         
         //set table view header and footer
+
         self.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshMePosts)];
         self.footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(addMorePosts)];
         

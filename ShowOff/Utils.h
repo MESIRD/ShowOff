@@ -22,6 +22,8 @@ typedef void (^VoidOperationBlock)(void);
 + (UIImage *)getImageFilledByColor:(UIColor *)color;
 
 + (void)showFlatAlertView:(NSString *)title andMessage:(NSString *)message;
++ (void)showProcessingOperation;
++ (void)hideProcessingOperation;
 + (void)showSuccessOperationWithTitle:(NSString *)title inSeconds:(unsigned int)seconds followedByOperation:(VoidOperationBlock)operation;
 + (void)showFailOperationWithTitle:(NSString *)title inSeconds:(unsigned int)seconds followedByOperation:(VoidOperationBlock)operation;
 
@@ -30,5 +32,5 @@ typedef void (^VoidOperationBlock)(void);
 + (BOOL)isEmptyTextField:(UITextField *)textField;
 + (BOOL)isEmptyTextView:(UITextView *)textView;
 
-
++ (UIViewController *)viewControllerWithEmbededView:(UIView *)view;
 @end

@@ -77,61 +77,41 @@
 
 - (NSString *)userNickName {
     
-    if ( !_userNickName) {
-        _userNickName = [[NSUserDefaults standardUserDefaults] objectForKey:@"userNickName"];
-    }
     return _userNickName;
 }
 
 - (NSString *)userDescription {
     
-    if ( !_userDescription) {
-        _userDescription = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDescription"];
-    }
     return _userDescription;
 }
 
 - (NSString *)userAvatarURL {
     
-    if ( !_userAvatarURL) {
-        _userAvatarURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"userAvatarURL"];
-    }
     return _userAvatarURL;
 }
 
 - (NSString *)userBackgroundColor {
     
-    if ( !_userBackgroundColor) {
-        _userBackgroundColor = [[NSUserDefaults standardUserDefaults] objectForKey:@"userBackgroundColor"];
-    }
     return _userBackgroundColor;
 }
 
 - (NSString *)userGender {
-    
-    if ( !_userGender) {
-        _userGender = [[NSUserDefaults standardUserDefaults] objectForKey:@"userGender"];
-    }
+
     return _userGender;
 }
 
 - (NSString *)userSexualOrientation {
     
-    if ( !_userSexualOrientation) {
-        _userSexualOrientation = [[NSUserDefaults standardUserDefaults] objectForKey:@"userSexualOrientation"];
-    }
     return _userSexualOrientation;
 }
 
 - (NSInteger)viewNumber {
     
-    _viewNumber = [[[NSUserDefaults standardUserDefaults] objectForKey:@"viewNumber"] integerValue];
     return _viewNumber;
 }
 
 - (NSInteger)appreciateNumber {
     
-    _appreciateNumber = [[[NSUserDefaults standardUserDefaults] objectForKey:@"appreciateNumber"] integerValue];
     return _viewNumber;
 }
 
@@ -140,6 +120,7 @@
     static UserPreference *sharedUserPreference = nil;
     if ( sharedUserPreference == nil) {
         sharedUserPreference = [[UserPreference alloc] init];
+        [sharedUserPreference fetchUserPreferenceFromUserDefaults];
     }
     return sharedUserPreference;
 }
@@ -170,7 +151,7 @@
         self.userDescription =       [obj objectForKey:@"userDescription"];
         self.userAvatarURL =         [obj objectForKey:@"userAvatarURL"];
         self.userBackgroundColor =   [obj objectForKey:@"userBackgroundColor"];
-        self.userGender =            [obj objectForKey:@"userGener"];
+        self.userGender =            [obj objectForKey:@"userGender"];
         self.userSexualOrientation = [obj objectForKey:@"userSexualOrientation"];
         self.viewNumber =            [[obj objectForKey:@"viewNumber"] integerValue];
         self.appreciateNumber =      [[obj objectForKey:@"appreciateNumber"] integerValue];
@@ -181,13 +162,13 @@
 - (void)storeUserPreferenceInUserDefaults {
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    [ud setObject:_userNickName forKey:@"userNickName"];
-    [ud setObject:_userDescription forKey:@"userDescription"];
-    [ud setObject:_userAvatarURL forKey:@"userAvatarURL"];
-    [ud setObject:_userBackgroundColor forKey:@"userBackgroundColor"];
-    [ud setObject:_userGender forKey:@"userGender"];
-    [ud setObject:_userSexualOrientation forKey:@"userSexualOrientation"];
-    [ud setObject:[NSNumber numberWithInteger:_viewNumber] forKey:@"viewNumber"];
+    [ud setObject:_userNickName                                  forKey:@"userNickName"];
+    [ud setObject:_userDescription                               forKey:@"userDescription"];
+    [ud setObject:_userAvatarURL                                 forKey:@"userAvatarURL"];
+    [ud setObject:_userBackgroundColor                           forKey:@"userBackgroundColor"];
+    [ud setObject:_userGender                                    forKey:@"userGender"];
+    [ud setObject:_userSexualOrientation                         forKey:@"userSexualOrientation"];
+    [ud setObject:[NSNumber numberWithInteger:_viewNumber]       forKey:@"viewNumber"];
     [ud setObject:[NSNumber numberWithInteger:_appreciateNumber] forKey:@"appreciateNumber"];
 }
 

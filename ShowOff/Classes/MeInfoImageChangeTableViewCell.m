@@ -15,6 +15,7 @@
     
     _avatar.layer.cornerRadius = 5;
     _avatar.layer.masksToBounds = YES;
+    _avatar.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
