@@ -133,7 +133,7 @@
         self.userNickName = userName;
         self.userDescription = @"在干什么...";
         self.userAvatarURL = @"";
-        self.userBackgroundColor = @"103,99,76";
+        self.userBackgroundColor = @"3,108,146";
         self.userGender = @"保密";
         self.userSexualOrientation = @"保密";
         self.viewNumber = 0;
@@ -157,6 +157,18 @@
         self.appreciateNumber =      [[obj objectForKey:@"appreciateNumber"] integerValue];
     }
     return self;
+}
+
+- (void)configureWithAVObject:(AVObject *)obj   {
+    
+    self.userNickName =          [obj objectForKey:@"userNickName"];
+    self.userDescription =       [obj objectForKey:@"userDescription"];
+    self.userAvatarURL =         [obj objectForKey:@"userAvatarURL"];
+    self.userBackgroundColor =   [obj objectForKey:@"userBackgroundColor"];
+    self.userGender =            [obj objectForKey:@"userGender"];
+    self.userSexualOrientation = [obj objectForKey:@"userSexualOrientation"];
+    self.viewNumber =            [[obj objectForKey:@"viewNumber"] integerValue];
+    self.appreciateNumber =      [[obj objectForKey:@"appreciateNumber"] integerValue];
 }
 
 - (void)storeUserPreferenceInUserDefaults {
@@ -185,9 +197,21 @@
     self.appreciateNumber =      [[ud objectForKey:@"appreciateNumber"] integerValue];
 }
 
-+ (void)removeUserPreferenceInUserDefaults {
+- (void)removeUserPreferenceInUserDefaults {
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    
+    //clear object data
+    self.userNickName =          nil;
+    self.userDescription =       nil;
+    self.userAvatarURL =         nil;
+    self.userBackgroundColor =   nil;
+    self.userGender =            nil;
+    self.userSexualOrientation = nil;
+    self.viewNumber =            0;
+    self.appreciateNumber =      0;
+
+    //remove object from user defaults
     [ud removeObjectForKey:@"userNickName"];
     [ud removeObjectForKey:@"userDescription"];
     [ud removeObjectForKey:@"userAvatarURL"];

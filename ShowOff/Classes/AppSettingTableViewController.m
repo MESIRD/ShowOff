@@ -9,6 +9,7 @@
 #import "AppSettingTableViewController.h"
 #import "AppSettingTableViewCell.h"
 #import "PasswordChangeViewController.h"
+#import "AboutViewController.h"
 #import <FlatUIKit/FlatUIKit.h>
 
 @interface AppSettingTableViewController()
@@ -67,23 +68,30 @@ static NSString * const reuseIdentifier = @"appSettingCell";
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.section) {
-        case 0: {
-            //change password
-            PasswordChangeViewController *vc = [[PasswordChangeViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-            break;
-        }
-        case 1:
+        case 0:
             switch (indexPath.row) {
-                case 0:
+                case 0: {
+                    //change password
+                    PasswordChangeViewController *vc = [[PasswordChangeViewController alloc] init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    break;
+                }
+                case 1: {
                     //clear cache
+                    
                     break;
-                case 1:
-                    //about
-                    break;
+                }
                 default:
                     break;
             }
+            break;
+        case 1: {
+            //about
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            AboutViewController *vc = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
         default:
             break;
     }
@@ -112,7 +120,7 @@ static NSString * const reuseIdentifier = @"appSettingCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     if ( section == 0) {
-        return 60;
+        return 120;
     }
     return 20;
 }

@@ -28,10 +28,10 @@
     // Do any additional setup after loading the view.
     
     //set navigationbar tint color
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTintColor:[UIColor cloudsColor]];
     
     //set navigation item title
-    self.navigationItem.title = [[AVUser currentUser] username];
+    self.navigationItem.title = [[UserPreference sharedUserPreference] userNickName];
     
     //configure setting bar button item
     UIBarButtonItem *settingButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(pushToSettingPage)];
@@ -54,6 +54,7 @@
 - (void)updateNickName {
     
     _nickName.text = [[UserPreference sharedUserPreference] userNickName];
+    self.navigationItem.title = [[UserPreference sharedUserPreference]userNickName];
 }
 
 - (void)updateDescription {
@@ -76,12 +77,25 @@
     
     _nickName.text = [[UserPreference sharedUserPreference] userNickName];
     _userDescription.text = [[UserPreference sharedUserPreference] userDescription];
+    //calculate string height
+    CGSize stringSize = [_userDescription.text sizeWithAttributes:nil];
+    NSLog(@"width : %f, height : %f", stringSize.width, stringSize.height);
+    
+    
     _avatar.layer.cornerRadius = _avatar.frame.size.height/2;
     _avatar.layer.masksToBounds = YES;
     _avatar.layer.borderColor = [UIColor cloudsColor].CGColor;
     _avatar.layer.borderWidth = 3.0;
     _avatar.contentMode = UIViewContentModeScaleAspectFill;
-    [_avatar setImageWithURL:[NSURL URLWithString:[[UserPreference sharedUserPreference] userAvatarURL]] placeholderImage:[UIImage imageNamed:@"default+avatar_circle"]];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *filePath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"avatar_%@.png", [[AVUser currentUser] username]]];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ( [fileManager fileExistsAtPath:filePath]) {
+        _avatar.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+    } else {
+        _avatar.image = [UIImage imageNamed:@"default_avatar_circle"];
+    }
     _viewNumber.text = [NSString stringWithFormat:@"%ld", [[UserPreference sharedUserPreference] viewNumber]];
     _appreciateNumber.text = [NSString stringWithFormat:@"%ld", [[UserPreference sharedUserPreference] appreciateNumber]];
     NSArray *rgb = [[[UserPreference sharedUserPreference] userBackgroundColor] componentsSeparatedByString:@","];

@@ -89,7 +89,15 @@ static const char AlertObjectKey;
         if ( cell == nil) {
             cell = [[MeUserInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"meUserInfoCell"];
         }
-        [cell.avatar setImageWithURL:[NSURL URLWithString:_settingGroup[indexPath.section][indexPath.row][0]] placeholderImage:[UIImage imageNamed:@"default_avatar"]];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex:0];
+        NSString *filePath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"avatar_%@.png", [[AVUser currentUser] username]]];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ( [fileManager fileExistsAtPath:filePath]) {
+            cell.avatar.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+        } else {
+            cell.avatar.image = [UIImage imageNamed:@"default_avatar"];
+        }
         cell.userName.text = _settingGroup[indexPath.section][indexPath.row][1];
         return cell;
     } else if ( indexPath.section == 1) {
@@ -256,7 +264,14 @@ static const char AlertObjectKey;
         [AVUser logOut];
         
         //remove user preference from use defaults
-        [UserPreference removeUserPreferenceInUserDefaults];
+        [[UserPreference sharedUserPreference] removeUserPreferenceInUserDefaults];
+        
+        //remove user avatar from file
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex:0];
+        NSString *filePath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"avatar_%@.png", [[AVUser currentUser] username]]];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager removeItemAtPath:filePath error:nil];
         
         //hide user information table view
         [[NSNotificationCenter defaultCenter] postNotificationName:@"User Logout" object:nil];

@@ -87,23 +87,43 @@
         [Utils showFlatAlertView:@"错误" andMessage:@"密码不能为空!"];
         return ;
     }
+
     
     [Utils showProcessingOperation];
     NSError *error = nil;
     [AVUser logInWithUsername:_userName.text password:_password.text error:&error];
     if ( error == nil) {
         
+        
+        NSLog(@"current username : %@", [[AVUser currentUser] username]);
+        NSLog(@"current nick name : %@", [[UserPreference sharedUserPreference] userNickName]);
+        
         //store user preference in user defaults
         AVQuery *query = [AVQuery queryWithClassName:@"UserPreference"];
         [query whereKey:@"belongedUser" equalTo:[AVUser currentUser]];
         AVObject *obj = [query getFirstObject];
-        UserPreference *userPreference = [[UserPreference alloc] initWithAVObject:obj];
+        UserPreference *userPreference = [UserPreference sharedUserPreference];
+        [userPreference configureWithAVObject:obj];
         [userPreference storeUserPreferenceInUserDefaults];
+        
+        NSLog(@"current nick name : %@", [[UserPreference sharedUserPreference] userNickName]);
         
         //post notification
         [[NSNotificationCenter defaultCenter] postNotificationName:@"User Login" object:nil];
         
         [Utils hideProcessingOperation];
+        
+        //download user avatar and save in file
+        NSData *avatarData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[userPreference userAvatarURL]]];
+        if ( [avatarData length] == 0) {
+            //user hasn't set avatar yet
+        } else {
+            //save avatar data in file
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *docDir = [paths objectAtIndex:0];
+            NSString *filePath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"avatar_%@.png", [[AVUser currentUser] username]]];
+            [avatarData writeToFile:filePath atomically:YES];
+        }
         
         //show login success
         [Utils showSuccessOperationWithTitle:@"登录成功!" inSeconds:2 followedByOperation:^{

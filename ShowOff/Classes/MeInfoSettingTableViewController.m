@@ -82,6 +82,9 @@
     _imagePicker.delegate = self;
     _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _imagePicker.allowsEditing = YES;
+    _imagePicker.navigationBar.tintColor = [UIColor cloudsColor];
+    _imagePicker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor cloudsColor]};
+    [_imagePicker.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,19 +99,17 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     if ( image == nil) {
-        
         //(fail to select image)do not need upload image
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
     } else {
-        
         //(successfully select)upload image to server
+        //judge whether there is an avatar image in the server to the given user
+        AVQuery *query = [AVQuery queryWithClassName:@"_File"];
+        [query whereKey:@"name" hasPrefix:[NSString stringWithFormat:@"avatar_%@", [[AVUser currentUser] username]]];
+        NSInteger count = [query countObjects];
         [Utils showProcessingOperation];
         if ( UIImagePNGRepresentation(image)) {
             //this image is a png format image
-            //judge whether there is an avatar image in the server to the given user
-            AVQuery *query = [AVQuery queryWithClassName:@"_File"];
-            [query whereKey:@"name" hasPrefix:[NSString stringWithFormat:@"avatar_%@", [[AVUser currentUser] username]]];
-            NSInteger count = [query countObjects];
             if ( count == 0) {
                 //user hasn't uploaded avatar yet, this is the first time
                 NSData *imageData = UIImagePNGRepresentation(image);
@@ -128,10 +129,6 @@
             }
         } else {
             //this image is a jepg format image
-            //judge whether there is an avatar image in the server to the given user
-            AVQuery *query = [AVQuery queryWithClassName:@"_File"];
-            [query whereKey:@"name" hasPrefix:[NSString stringWithFormat:@"avatar_%@", [[AVUser currentUser] username]]];
-            NSInteger count = [query countObjects];
             if ( count == 0) {
                 //user hasn't uploaded avatar yet, this is the first time
                 NSData *imageData = UIImageJPEGRepresentation(image, 1);
@@ -169,6 +166,12 @@
             [obj setObject:[imageFile url] forKey:@"userAvatarURL"];
             [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if ( succeeded) {
+                    //save image data in file
+                    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                    NSString *docDir = [paths objectAtIndex:0];
+                    NSString *filePath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"avatar_%@.png", [[AVUser currentUser] username]]];
+                    [imageData writeToFile:filePath atomically:YES];
+                    //
                     [Utils hideProcessingOperation];
                     [[UserPreference sharedUserPreference] setUserAvatarURL:[imageFile url]];
                     [[UserPreference sharedUserPreference] storeUserPreferenceInUserDefaults];
@@ -210,8 +213,16 @@
             if ( cell == nil) {
                 cell = [[MeInfoImageChangeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"imageChangeCell"];
             }
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *docDir = [paths objectAtIndex:0];
+            NSString *filePath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"avatar_%@.png", [[AVUser currentUser] username]]];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            if ( [fileManager fileExistsAtPath:filePath]) {
+                cell.avatar.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:filePath]];
+            } else {
+                cell.avatar.image = [UIImage imageNamed:@"default_avatar"];
+            }
             cell.title.text = _meInfoSettingGroup[indexPath.section][indexPath.row][0];
-            [cell.avatar setImageWithURL:[NSURL URLWithString:_meInfoSettingGroup[indexPath.section][indexPath.row][1]] placeholderImage:[UIImage imageNamed:@"default_avatar"]];
             return cell;
         } else {
             

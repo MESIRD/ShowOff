@@ -27,9 +27,10 @@ typedef void (^SaveCompleteBlock)(BOOL succeeded, NSError *error);
 - (instancetype)initWithUserName:(NSString *)userName;
 - (instancetype)initWithAVObject:(AVObject *)obj;
 
+- (void)configureWithAVObject:(AVObject *)obj;
 
 - (void)storeUserPreferenceInUserDefaults;
 - (void)fetchUserPreferenceFromUserDefaults;
-+ (void)removeUserPreferenceInUserDefaults;
+- (void)removeUserPreferenceInUserDefaults;
 
 @end
