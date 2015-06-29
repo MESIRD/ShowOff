@@ -48,7 +48,7 @@
     [self.view addSubview:completeButton];
     
     _userName = [[FUITextField alloc] initWithFrame:CGRectMake(40, 140, 240, 40)];
-    [Utils configureFUITextField:_userName withPlaceHolder:@"用户名"];
+    [Utils configureFUITextField:_userName withPlaceHolder:@"用户名" andIndent:YES];
     [_userName setReturnKeyType:UIReturnKeyDone];
     [_userName setDelegate:self];
     
@@ -58,7 +58,7 @@
     [self.view addSubview:_userName];
     
     _password = [[FUITextField alloc] initWithFrame:CGRectMake(40, 220, 240, 40)];
-    [Utils configureFUITextField:_password withPlaceHolder:@"密码"];
+    [Utils configureFUITextField:_password withPlaceHolder:@"密码" andIndent:YES];
     [_password setSecureTextEntry:YES];
     [_password setReturnKeyType:UIReturnKeyDone];
     [_password setDelegate:self];

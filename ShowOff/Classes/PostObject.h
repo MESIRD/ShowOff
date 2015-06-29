@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
 
 @interface PostObject : NSObject
 
-- (NSArray *)postImages;
-- (NSString *)postText;
-- (User *)user;
+@property (strong, nonatomic) NSArray   *postImages;
+@property (assign, nonatomic) NSString  *postText;
+@property (strong, nonatomic) NSString  *userId;
 
-- (void)configurePostObjectWithUser:(User *)user postText:(NSString *)postText andPostImages:(NSArray *)postImages;
+- (NSURL *)fetchUserAvatarURL;
 
 @end

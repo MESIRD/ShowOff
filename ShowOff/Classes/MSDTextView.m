@@ -17,6 +17,16 @@
 
 @implementation MSDTextView
 
+- (void)setText:(NSString *)text {
+    
+    [super setText:text];
+    if ( ![text isEqualToString:@""]) {
+        _placeHolderLabel.hidden = YES;
+    } else {
+        _placeHolderLabel.hidden = NO;
+    }
+}
+
 - (void)setPlaceHolder:(NSString *)placeHolder {
     
     _placeHolder = placeHolder;
@@ -45,16 +55,15 @@
     self = [super initWithFrame:frame];
     if ( self) {
         
-        _placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake( 5, 5, frame.size.width - 10, 30)];
+        _placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake( 5, 3, frame.size.width - 10, 30)];
         [_placeHolderLabel setFont:[UIFont systemFontOfSize:16]];
-        [_placeHolderLabel setTextColor:[UIColor lightGrayColor]];
-        [_placeHolderLabel setHidden:YES];
+        [_placeHolderLabel setTextColor:[UIColor colorWithWhite:0.7 alpha:1]];
         [self addSubview:_placeHolderLabel];
         
         self.delegate = self;
         self.returnKeyType = UIReturnKeyDone;
         self.font = [UIFont systemFontOfSize:16];
-        self.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+//        self.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
         
         self.layer.cornerRadius = 5;
         self.layer.masksToBounds = YES;
@@ -66,17 +75,17 @@
 
 
 
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    
-    //show border
-    self.layer.borderWidth = _borderWidth;
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    
-    //hide border
-    self.layer.borderWidth = 0.0;
-}
+//- (void)textViewDidBeginEditing:(UITextView *)textView {
+//    
+//    //show border
+////    self.layer.borderWidth = _borderWidth;
+//}
+//
+//- (void)textViewDidEndEditing:(UITextView *)textView {
+//    
+//    //hide border
+////    self.layer.borderWidth = 0.0;
+//}
 
 - (void)textViewDidChange:(UITextView *)textView {
     

@@ -38,12 +38,16 @@
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
-+ (void)configureFUITextField:(FUITextField *)textField withPlaceHolder:(NSString *)placeHolder {
++ (void)configureFUITextField:(FUITextField *)textField withPlaceHolder:(NSString *)placeHolder andIndent:(BOOL)isIndent {
     
     textField.font = [UIFont flatFontOfSize:16];
     textField.backgroundColor = [UIColor clearColor];
     textField.placeholder = placeHolder;
-    textField.edgeInsets = UIEdgeInsetsMake(4.0f, 30.0f, 4.0f, 15.0f);
+    if ( isIndent) {
+        textField.edgeInsets = UIEdgeInsetsMake(4.0f, 30.0f, 4.0f, 15.0f);
+    } else {
+        textField.edgeInsets = UIEdgeInsetsMake(4.0f, 5.0f, 4.0f, 15.0f);
+    }
     textField.textFieldColor = [UIColor whiteColor];
     textField.borderColor = [UIColor turquoiseColor];
     textField.borderWidth = 2.0f;
@@ -60,7 +64,13 @@
     UIImage *retImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return retImage;
+}
+
++ (UIImage *)clipImage:(UIImage *)image inRect:(CGRect)rect {
     
+    CGImageRef imageRef = image.CGImage;
+    CGImageRef cgImage = CGImageCreateWithImageInRect(imageRef, rect);
+    return [UIImage imageWithCGImage:cgImage];
 }
 
 + (void)showFlatAlertView:(NSString *)title andMessage:(NSString *)message {
@@ -107,13 +117,13 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            sleep(2);
+            sleep(seconds);
             [SVProgressHUD dismiss];
             if ( operation != nil) {
                 operation();
             }
         });
-        
+    
     });
 }
 
@@ -127,7 +137,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            sleep(2);
+            sleep(seconds);
             [SVProgressHUD dismiss];
             if ( operation != nil) {
                 operation();

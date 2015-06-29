@@ -18,4 +18,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
+
+- (void)textViewDidChange:(UITextView *)textView;
+
 @end

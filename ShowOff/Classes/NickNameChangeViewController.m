@@ -30,7 +30,7 @@
     
     //create textfield
     _nickName = [[FUITextField alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH, 40)];
-    [Utils configureFUITextField:_nickName withPlaceHolder:@"昵称"];
+    [Utils configureFUITextField:_nickName withPlaceHolder:@"昵称" andIndent:YES];
     _nickName.delegate = self;
     _nickName.returnKeyType = UIReturnKeyDone;
     _nickName.text = _currentNickName;

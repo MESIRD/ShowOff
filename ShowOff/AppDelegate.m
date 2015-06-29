@@ -22,13 +22,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    //set userdefaults
+    
+
+    if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"LocationPermission"] == nil) {
+        NSLog(@"location permission is nil");
+        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"LocationPermission"];
+    }
+    
     [AVOSCloud setApplicationId:@"ul4sv1ch418fqxfvp7l4et3hskty7lawywxpiioch0fcgxok"
                       clientKey:@"6cg0di76vel7yyzxpkor09fgoc69pmtiitkga9oum926n4c8"];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
 //    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor turquoiseColor] highlightedColor:[UIColor belizeHoleColor] cornerRadius:3];
-    
     
     return YES;
 }

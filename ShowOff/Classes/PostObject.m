@@ -7,62 +7,26 @@
 //
 
 #import "PostObject.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 
 
 @interface PostObject()
-
-@property (strong, nonatomic) NSArray   *postImages;
-@property (assign, nonatomic) NSString  *postText;
-@property (strong, nonatomic) User      *user;
 
 @end
 
 
 @implementation PostObject
 
-- (NSArray *)postImages {
+- (NSURL *)fetchUserAvatarURL {
     
-    return _postImages;
+    AVQuery *queryUser = [AVQuery queryWithClassName:@"_User"];
+    [queryUser whereKey:@"objectId" equalTo:_userId];
+    AVUser *user = (AVUser *)[queryUser getFirstObject];
+    AVQuery *queryUserPreference = [AVQuery queryWithClassName:@"UserPreference"];
+    [queryUserPreference whereKey:@"belongedUser" equalTo:user];
+    AVObject *userPreference = [queryUserPreference getFirstObject];
+    return [NSURL URLWithString:[userPreference objectForKey:@"userAvatarURL"]];
 }
-
-- (NSString *)postText {
-    
-    return _postText;
-}
-
-- (User *)user {
-    
-    return _user;
-}
-
-- (instancetype)init {
-    
-    self = [super init];
-    if ( self) {
-        
-        
-    }
-    return self;
-}
-
-- (void)configurePostObjectWithUser:(User *)user postText:(NSString *)postText andPostImages:(NSArray *)postImages {
-    
-    if ( !user) {
-        return ;
-    }
-    
-    _user = [[User alloc] init];
-    _user = user;
-    
-    _postText = postText;
-    
-    if ( !postImages) {
-        return ;
-    }
-    
-    _postImages = [postImages mutableCopy];
-}
-
 
 @end

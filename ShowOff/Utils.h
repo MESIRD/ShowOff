@@ -17,9 +17,10 @@ typedef void (^VoidOperationBlock)(void);
 + (Utils *)defaultUtils;
 
 + (void)configureFUIButton:(FUIButton *)button withTitle:(NSString *)title target:(id)target andAction:(SEL)action;
-+ (void)configureFUITextField:(FUITextField *)textField withPlaceHolder:(NSString *)placeHolder;
++ (void)configureFUITextField:(FUITextField *)textField withPlaceHolder:(NSString *)placeHolder andIndent:(BOOL)isIndent;
 
 + (UIImage *)getImageFilledByColor:(UIColor *)color;
++ (UIImage *)clipImage:(UIImage *)image inRect:(CGRect)rect;
 
 + (void)showFlatAlertView:(NSString *)title andMessage:(NSString *)message;
 + (void)showProcessingOperation;

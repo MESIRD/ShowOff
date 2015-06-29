@@ -87,9 +87,9 @@ static NSString * const reuseIdentifier = @"meInfoTableViewCell";
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             if (_mePostsArray.count == 0) {
+                [self.header endRefreshing];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"Me Post Number Zero" object:nil];
             }
-            [self.header endRefreshing];
         });
     });
 }

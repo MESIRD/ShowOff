@@ -7,16 +7,18 @@
 //
 
 #import "HomeViewController.h"
-#import "FlatUIKit.h"
-#import "MJRefresh.h"
 #import "MeViewController.h"
+#import "ChannelCreateViewController.h"
 #import "Universal.h"
+#import "Utils.h"
+#import <FlatUIKit/FlatUIKit.h>
 #import <AVOSCloud/AVOSCloud.h>
+#import <MJRefresh/MJRefresh.h>
 
 
 typedef NS_ENUM(NSInteger, PageName) {
-    HOTTEST_PAGE = 1,
-    NEWEST_PAGE,
+    CHANNEL_PAGE = 1,
+    POST_PAGE
 };
 
 @interface HomeViewController ()
@@ -24,7 +26,8 @@ typedef NS_ENUM(NSInteger, PageName) {
     PageName currentPageName;
 }
 
-
+@property (strong, nonatomic) UIBarButtonItem *createPostBarButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *createChannelBarButtonItem;
 
 @end
 
@@ -43,6 +46,9 @@ typedef NS_ENUM(NSInteger, PageName) {
     //set tab bar shadow color
     self.tabBarController.tabBar.shadowImage = [UIImage imageNamed:@"transparency"];
     
+    //set navigation bar tint color
+    self.navigationController.navigationBar.tintColor = [UIColor cloudsColor];
+    
     //set tab bar item images to original color
     UITabBarItem *homeItem = [self.tabBarController.tabBar.items objectAtIndex:0];
     homeItem.image = [[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -57,7 +63,7 @@ typedef NS_ENUM(NSInteger, PageName) {
     meItem.selectedImage = [[UIImage imageNamed:@"me_highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     //add segmentedControl
-    FUISegmentedControl *segmentedControl = [[FUISegmentedControl alloc] initWithItems:@[@"热门", @"最新"]];
+    FUISegmentedControl *segmentedControl = [[FUISegmentedControl alloc] initWithItems:@[@"城里人", @"乡下人"]];
     
     segmentedControl.selectedFont = [UIFont boldFlatFontOfSize:12];
     segmentedControl.deselectedFont = [UIFont boldFlatFontOfSize:12];
@@ -74,59 +80,62 @@ typedef NS_ENUM(NSInteger, PageName) {
     [segmentedControl addTarget:self action:@selector(exchangeHomePage) forControlEvents:UIControlEventValueChanged];
     [self.navigationItem setTitleView:segmentedControl];
     
-    //add 'add' button item
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(addNewPost)];
-    [addButton setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldFlatFontOfSize:12], NSForegroundColorAttributeName: [UIColor cloudsColor]} forState:UIControlStateNormal];
-    [self.navigationItem setRightBarButtonItem:addButton];
+    //create button item
+    _createChannelBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStylePlain target:self action:@selector(createChannel)];
+    _createPostBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(createPost)];
     
     //configure table header & footer
-    _hottestTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(hottestHeaderRefresh)];
-    _hottestTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(hottestFooterRefresh)];
+    _channelTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(hottestHeaderRefresh)];
+    _channelTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(hottestFooterRefresh)];
     
-    _newestTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(newestHeaderRefresh)];
-    _newestTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(newestFooterRefresh)];
+    _postTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(newestHeaderRefresh)];
+    _postTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(newestFooterRefresh)];
     
-    //hide one table view
-    currentPageName = HOTTEST_PAGE;
-    [_newestTableView setHidden:YES];
-    
-    //LeanCloud test object
-//    AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
-//    [testObject setObject:@"bar" forKey:@"foo"];
-//    [testObject save];
+    //hide post table view
+    currentPageName = CHANNEL_PAGE;
+    [self.navigationItem setRightBarButtonItem:_createChannelBarButtonItem];
+    [_postTableView setHidden:YES];
 
 }
 
 - (void)exchangeHomePage {
     
     switch (currentPageName) {
-        case HOTTEST_PAGE:
-            [_hottestTableView setHidden:YES];
-            [_newestTableView setHidden:NO];
-            currentPageName = NEWEST_PAGE;
+        case CHANNEL_PAGE:
+            [_channelTableView setHidden:YES];
+            [_postTableView setHidden:NO];
+            [self.navigationItem setRightBarButtonItem:_createPostBarButtonItem];
+            currentPageName = POST_PAGE;
             break;
-        case NEWEST_PAGE:
-            [_hottestTableView setHidden:NO];
-            [_newestTableView setHidden:YES];
-            currentPageName = HOTTEST_PAGE;
+        case POST_PAGE:
+            [_channelTableView setHidden:NO];
+            [_postTableView setHidden:YES];
+            [self.navigationItem setRightBarButtonItem:_createChannelBarButtonItem];
+            currentPageName = CHANNEL_PAGE;
         default:
             break;
     }
 }
 
-- (void)addNewPost {
+- (void)createChannel {
+    
+    ChannelCreateViewController *vc = [[ChannelCreateViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)createPost {
     
     
 }
 
 - (void)hottestHeaderRefresh {
     
-    [_hottestTableView.header endRefreshing];
+    [_channelTableView.header endRefreshing];
 }
 
 - (void)hottestFooterRefresh {
     
-    [_hottestTableView.footer endRefreshing];
+    [_channelTableView.footer endRefreshing];
 }
 
 - (void)newestHeaderRefresh {

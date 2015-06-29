@@ -32,21 +32,21 @@
     
     //configure three text fields
     _originalPassword = [[FUITextField alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH, 40)];
-    [Utils configureFUITextField:_originalPassword withPlaceHolder:@"原密码"];
+    [Utils configureFUITextField:_originalPassword withPlaceHolder:@"原密码" andIndent:YES];
     _originalPassword.returnKeyType = UIReturnKeyDone;
     _originalPassword.secureTextEntry = YES;
     _originalPassword.delegate = self;
     [self.view addSubview:_originalPassword];
     
     _changedPassword = [[FUITextField alloc] initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, 40)];
-    [Utils configureFUITextField:_changedPassword withPlaceHolder:@"新密码"];
+    [Utils configureFUITextField:_changedPassword withPlaceHolder:@"新密码" andIndent:YES];
     _changedPassword.returnKeyType = UIReturnKeyDone;
     _changedPassword.secureTextEntry = YES;
     _changedPassword.delegate = self;
     [self.view addSubview:_changedPassword];
     
     _repeatPassword = [[FUITextField alloc] initWithFrame:CGRectMake(0, 240, SCREEN_WIDTH, 40)];
-    [Utils configureFUITextField:_repeatPassword withPlaceHolder:@"重复密码"];
+    [Utils configureFUITextField:_repeatPassword withPlaceHolder:@"重复密码" andIndent:YES];
     _repeatPassword.returnKeyType = UIReturnKeyDone;
     _repeatPassword.secureTextEntry = YES;
     _repeatPassword.delegate = self;

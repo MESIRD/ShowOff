@@ -21,6 +21,14 @@
 		D7B8D5591B3EB16200356F95 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B8D5581B3EB16200356F95 /* AboutViewController.m */; };
 		D7B8D55F1B3EB28900356F95 /* AboutTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B8D55E1B3EB28900356F95 /* AboutTableView.m */; };
 		E3170038D6F342276A11F688 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBD072BB593FA35AFC4C539 /* libPods.a */; };
+		F5022B091B40F50B00631760 /* ChannelTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5022B081B40F50B00631760 /* ChannelTableView.m */; };
+		F5022B0C1B40F51F00631760 /* PostTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5022B0B1B40F51F00631760 /* PostTableView.m */; };
+		F5022B0F1B410E0600631760 /* ChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5022B0E1B410E0600631760 /* ChannelTableViewCell.m */; };
+		F5022B121B410E1A00631760 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5022B111B410E1A00631760 /* PostTableViewCell.m */; };
+		F5022B141B4114A200631760 /* ChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5022B131B4114A200631760 /* ChannelTableViewCell.xib */; };
+		F5022B171B41168A00631760 /* ChannelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F5022B161B41168A00631760 /* ChannelObject.m */; };
+		F5022B1A1B4138BC00631760 /* ChannelCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5022B191B4138BC00631760 /* ChannelCreateViewController.m */; };
+		F5022B1D1B413E3B00631760 /* PostCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5022B1C1B413E3B00631760 /* PostCreateViewController.m */; };
 		F5334DE31B3D47FE00FE9502 /* AppSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE21B3D47FE00FE9502 /* AppSettingTableViewController.m */; };
 		F5334DE61B3D485600FE9502 /* AppSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE51B3D485600FE9502 /* AppSettingTableViewCell.m */; };
 		F5334DEA1B3D55E700FE9502 /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE91B3D55E700FE9502 /* PasswordChangeViewController.m */; };
@@ -34,12 +42,6 @@
 		F57E463B1B3943FB004D4DB6 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E463A1B3943FB004D4DB6 /* libicucore.dylib */; };
 		F57E463D1B39440A004D4DB6 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E463C1B39440A004D4DB6 /* libc++.dylib */; };
 		F58AFCB11B33B79300E1AC4C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCB01B33B79300E1AC4C /* HomeViewController.m */; };
-		F58AFCB41B33B7BA00E1AC4C /* NewestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCB31B33B7BA00E1AC4C /* NewestTableView.m */; };
-		F58AFCB71B33BA4400E1AC4C /* HottestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCB61B33BA4400E1AC4C /* HottestTableView.m */; };
-		F58AFCBD1B33BC2D00E1AC4C /* NewestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58AFCBC1B33BC2D00E1AC4C /* NewestTableViewCell.xib */; };
-		F58AFCC21B33BCA600E1AC4C /* NewestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCC11B33BCA600E1AC4C /* NewestTableViewCell.m */; };
-		F58AFCC41B33BFF500E1AC4C /* HottestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58AFCC31B33BFF500E1AC4C /* HottestTableViewCell.xib */; };
-		F58AFCC71B33C01400E1AC4C /* HottestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCC61B33C01400E1AC4C /* HottestTableViewCell.m */; };
 		F58AFCCC1B33E03100E1AC4C /* PostObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCCB1B33E03100E1AC4C /* PostObject.m */; };
 		F58AFCD11B33E31000E1AC4C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCD01B33E31000E1AC4C /* User.m */; };
 		F58AFCDF1B343A4200E1AC4C /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58AFCDE1B343A4200E1AC4C /* MeViewController.m */; };
@@ -100,6 +102,21 @@
 		D7B8D5581B3EB16200356F95 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = Classes/AboutViewController.m; sourceTree = "<group>"; };
 		D7B8D55D1B3EB28900356F95 /* AboutTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutTableView.h; path = Classes/AboutTableView.h; sourceTree = "<group>"; };
 		D7B8D55E1B3EB28900356F95 /* AboutTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutTableView.m; path = Classes/AboutTableView.m; sourceTree = "<group>"; };
+		F5022B071B40F50B00631760 /* ChannelTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelTableView.h; path = Classes/ChannelTableView.h; sourceTree = "<group>"; };
+		F5022B081B40F50B00631760 /* ChannelTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelTableView.m; path = Classes/ChannelTableView.m; sourceTree = "<group>"; };
+		F5022B0A1B40F51F00631760 /* PostTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostTableView.h; path = Classes/PostTableView.h; sourceTree = "<group>"; };
+		F5022B0B1B40F51F00631760 /* PostTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostTableView.m; path = Classes/PostTableView.m; sourceTree = "<group>"; };
+		F5022B0D1B410E0600631760 /* ChannelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelTableViewCell.h; path = Classes/ChannelTableViewCell.h; sourceTree = "<group>"; };
+		F5022B0E1B410E0600631760 /* ChannelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelTableViewCell.m; path = Classes/ChannelTableViewCell.m; sourceTree = "<group>"; };
+		F5022B101B410E1A00631760 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostTableViewCell.h; path = Classes/PostTableViewCell.h; sourceTree = "<group>"; };
+		F5022B111B410E1A00631760 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostTableViewCell.m; path = Classes/PostTableViewCell.m; sourceTree = "<group>"; };
+		F5022B131B4114A200631760 /* ChannelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelTableViewCell.xib; sourceTree = "<group>"; };
+		F5022B151B41168A00631760 /* ChannelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelObject.h; path = Classes/ChannelObject.h; sourceTree = "<group>"; };
+		F5022B161B41168A00631760 /* ChannelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelObject.m; path = Classes/ChannelObject.m; sourceTree = "<group>"; };
+		F5022B181B4138BC00631760 /* ChannelCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelCreateViewController.h; path = Classes/ChannelCreateViewController.h; sourceTree = "<group>"; };
+		F5022B191B4138BC00631760 /* ChannelCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelCreateViewController.m; path = Classes/ChannelCreateViewController.m; sourceTree = "<group>"; };
+		F5022B1B1B413E3B00631760 /* PostCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostCreateViewController.h; path = Classes/PostCreateViewController.h; sourceTree = "<group>"; };
+		F5022B1C1B413E3B00631760 /* PostCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostCreateViewController.m; path = Classes/PostCreateViewController.m; sourceTree = "<group>"; };
 		F5334DE11B3D47FE00FE9502 /* AppSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSettingTableViewController.h; path = Classes/AppSettingTableViewController.h; sourceTree = "<group>"; };
 		F5334DE21B3D47FE00FE9502 /* AppSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppSettingTableViewController.m; path = Classes/AppSettingTableViewController.m; sourceTree = "<group>"; };
 		F5334DE41B3D485600FE9502 /* AppSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSettingTableViewCell.h; path = Classes/AppSettingTableViewCell.h; sourceTree = "<group>"; };
@@ -120,16 +137,6 @@
 		F57E463C1B39440A004D4DB6 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F58AFCAF1B33B79300E1AC4C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Classes/HomeViewController.h; sourceTree = "<group>"; };
 		F58AFCB01B33B79300E1AC4C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Classes/HomeViewController.m; sourceTree = "<group>"; };
-		F58AFCB21B33B7BA00E1AC4C /* NewestTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewestTableView.h; path = Classes/NewestTableView.h; sourceTree = "<group>"; };
-		F58AFCB31B33B7BA00E1AC4C /* NewestTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewestTableView.m; path = Classes/NewestTableView.m; sourceTree = "<group>"; };
-		F58AFCB51B33BA4400E1AC4C /* HottestTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HottestTableView.h; path = Classes/HottestTableView.h; sourceTree = "<group>"; };
-		F58AFCB61B33BA4400E1AC4C /* HottestTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HottestTableView.m; path = Classes/HottestTableView.m; sourceTree = "<group>"; };
-		F58AFCBC1B33BC2D00E1AC4C /* NewestTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewestTableViewCell.xib; sourceTree = "<group>"; };
-		F58AFCC01B33BCA600E1AC4C /* NewestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewestTableViewCell.h; path = Classes/NewestTableViewCell.h; sourceTree = "<group>"; };
-		F58AFCC11B33BCA600E1AC4C /* NewestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewestTableViewCell.m; path = Classes/NewestTableViewCell.m; sourceTree = "<group>"; };
-		F58AFCC31B33BFF500E1AC4C /* HottestTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HottestTableViewCell.xib; sourceTree = "<group>"; };
-		F58AFCC51B33C01400E1AC4C /* HottestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HottestTableViewCell.h; path = Classes/HottestTableViewCell.h; sourceTree = "<group>"; };
-		F58AFCC61B33C01400E1AC4C /* HottestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HottestTableViewCell.m; path = Classes/HottestTableViewCell.m; sourceTree = "<group>"; };
 		F58AFCC81B33C26C00E1AC4C /* Universal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Universal.h; sourceTree = "<group>"; };
 		F58AFCCA1B33E03100E1AC4C /* PostObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostObject.h; path = Classes/PostObject.h; sourceTree = "<group>"; };
 		F58AFCCB1B33E03100E1AC4C /* PostObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostObject.m; path = Classes/PostObject.m; sourceTree = "<group>"; };
@@ -338,8 +345,7 @@
 		F58AFCBB1B33BB5100E1AC4C /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
-				F58AFCBC1B33BC2D00E1AC4C /* NewestTableViewCell.xib */,
-				F58AFCC31B33BFF500E1AC4C /* HottestTableViewCell.xib */,
+				F5022B131B4114A200631760 /* ChannelTableViewCell.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -349,6 +355,10 @@
 			children = (
 				F58AFCAF1B33B79300E1AC4C /* HomeViewController.h */,
 				F58AFCB01B33B79300E1AC4C /* HomeViewController.m */,
+				F5022B181B4138BC00631760 /* ChannelCreateViewController.h */,
+				F5022B191B4138BC00631760 /* ChannelCreateViewController.m */,
+				F5022B1B1B413E3B00631760 /* PostCreateViewController.h */,
+				F5022B1C1B413E3B00631760 /* PostCreateViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -356,14 +366,14 @@
 		F58AFCBF1B33BC8100E1AC4C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F58AFCB21B33B7BA00E1AC4C /* NewestTableView.h */,
-				F58AFCB31B33B7BA00E1AC4C /* NewestTableView.m */,
-				F58AFCB51B33BA4400E1AC4C /* HottestTableView.h */,
-				F58AFCB61B33BA4400E1AC4C /* HottestTableView.m */,
-				F58AFCC01B33BCA600E1AC4C /* NewestTableViewCell.h */,
-				F58AFCC11B33BCA600E1AC4C /* NewestTableViewCell.m */,
-				F58AFCC51B33C01400E1AC4C /* HottestTableViewCell.h */,
-				F58AFCC61B33C01400E1AC4C /* HottestTableViewCell.m */,
+				F5022B071B40F50B00631760 /* ChannelTableView.h */,
+				F5022B081B40F50B00631760 /* ChannelTableView.m */,
+				F5022B0A1B40F51F00631760 /* PostTableView.h */,
+				F5022B0B1B40F51F00631760 /* PostTableView.m */,
+				F5022B0D1B410E0600631760 /* ChannelTableViewCell.h */,
+				F5022B0E1B410E0600631760 /* ChannelTableViewCell.m */,
+				F5022B101B410E1A00631760 /* PostTableViewCell.h */,
+				F5022B111B410E1A00631760 /* PostTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -373,6 +383,8 @@
 			children = (
 				F58AFCCA1B33E03100E1AC4C /* PostObject.h */,
 				F58AFCCB1B33E03100E1AC4C /* PostObject.m */,
+				F5022B151B41168A00631760 /* ChannelObject.h */,
+				F5022B161B41168A00631760 /* ChannelObject.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -597,10 +609,9 @@
 			files = (
 				D79ACB5D1B37F99500E01D01 /* Main.storyboard in Resources */,
 				D73588AF1B2F3EF000BB80A6 /* LaunchScreen.xib in Resources */,
-				F58AFCC41B33BFF500E1AC4C /* HottestTableViewCell.xib in Resources */,
-				F58AFCBD1B33BC2D00E1AC4C /* NewestTableViewCell.xib in Resources */,
 				F58C51491B3A83D000DEDE11 /* MeInfoTableViewCell.xib in Resources */,
 				D73588AC1B2F3EF000BB80A6 /* Images.xcassets in Resources */,
+				F5022B141B4114A200631760 /* ChannelTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,11 +662,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F58AFCB41B33B7BA00E1AC4C /* NewestTableView.m in Sources */,
 				F58C51521B3A863C00DEDE11 /* MeInfoTableView.m in Sources */,
 				D73588A41B2F3EF000BB80A6 /* AppDelegate.m in Sources */,
 				F5A0143E1B3B9DA6000CB1B7 /* UserPreference.m in Sources */,
+				F5022B091B40F50B00631760 /* ChannelTableView.m in Sources */,
 				F5334DE31B3D47FE00FE9502 /* AppSettingTableViewController.m in Sources */,
+				F5022B1D1B413E3B00631760 /* PostCreateViewController.m in Sources */,
 				F58C51631B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.m in Sources */,
 				F58C51601B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.m in Sources */,
 				F58C51661B3AB39D00DEDE11 /* NickNameChangeViewController.m in Sources */,
@@ -663,22 +675,25 @@
 				D7B8D5591B3EB16200356F95 /* AboutViewController.m in Sources */,
 				F57E462B1B38FF8E004D4DB6 /* Utils.m in Sources */,
 				F58C515A1B3AA3D100DEDE11 /* MeInfoSettingTableViewController.m in Sources */,
+				F5022B1A1B4138BC00631760 /* ChannelCreateViewController.m in Sources */,
 				D73588A11B2F3EF000BB80A6 /* main.m in Sources */,
 				F58AFCDF1B343A4200E1AC4C /* MeViewController.m in Sources */,
 				F58C51701B3ADDA800DEDE11 /* MSDTextView.m in Sources */,
 				D79ACB5B1B37EC7800E01D01 /* MeSwitchTableViewCell.m in Sources */,
 				F57E462E1B3926E0004D4DB6 /* LoginViewController.m in Sources */,
+				F5022B171B41168A00631760 /* ChannelObject.m in Sources */,
 				D7B8D55F1B3EB28900356F95 /* AboutTableView.m in Sources */,
+				F5022B0C1B40F51F00631760 /* PostTableView.m in Sources */,
 				F57E46311B3934B4004D4DB6 /* UserNamePasswordInputViewController.m in Sources */,
 				F58BBA111B3BE5FE00D2BD52 /* GenderTableViewCell.m in Sources */,
 				F58C514F1B3A85DC00DEDE11 /* MeInfoTableViewCell.m in Sources */,
-				F58AFCC21B33BCA600E1AC4C /* NewestTableViewCell.m in Sources */,
 				F58C51561B3A92F000DEDE11 /* MeInfoViewController.m in Sources */,
 				D79ACB581B37EC6800E01D01 /* MeSettingTableViewCell.m in Sources */,
 				F5334DE61B3D485600FE9502 /* AppSettingTableViewCell.m in Sources */,
 				F58AFCCC1B33E03100E1AC4C /* PostObject.m in Sources */,
-				F58AFCC71B33C01400E1AC4C /* HottestTableViewCell.m in Sources */,
+				F5022B0F1B410E0600631760 /* ChannelTableViewCell.m in Sources */,
 				F5334DEA1B3D55E700FE9502 /* PasswordChangeViewController.m in Sources */,
+				F5022B121B410E1A00631760 /* PostTableViewCell.m in Sources */,
 				F58C51691B3AD64800DEDE11 /* DescriptionChangeViewController.m in Sources */,
 				F58BBA171B3BFB1B00D2BD52 /* SexualOrientationTableViewCell.m in Sources */,
 				D79ACB551B37EBBD00E01D01 /* MeUserInfoTableViewCell.m in Sources */,
@@ -687,7 +702,6 @@
 				F58AFCB11B33B79300E1AC4C /* HomeViewController.m in Sources */,
 				F5E00E601B3B129C00ACE6B6 /* GenderChangeTableViewController.m in Sources */,
 				D79ACB521B37EAC700E01D01 /* MeTableView.m in Sources */,
-				F58AFCB71B33BA4400E1AC4C /* HottestTableView.m in Sources */,
 				D77D23511B3C693800C24C23 /* ColorChangeCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
