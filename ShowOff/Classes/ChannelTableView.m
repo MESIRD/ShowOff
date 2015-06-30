@@ -9,38 +9,62 @@
 #import "ChannelTableView.h"
 #import "ChannelTableViewCell.h"
 #import "ChannelObject.h"
+#import "Utils.h"
 #import <FlatUIKit/FlatUIKit.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <MJRefresh/MJRefresh.h>
 #import <AVOSCloud/AVOSCloud.h>
 
 @interface ChannelTableView()
 
-@property (strong, nonatomic) NSMutableArray *channelArray;
+@property (nonatomic)   NSMutableArray     *channelArray;
 
 @end
 
 @implementation ChannelTableView
 
-static NSString * const reuseIdentifier = @"hottestCell";
+static NSString * const reuseIdentifier = @"channelCell";
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     
     self = [super initWithCoder:aDecoder];
     if ( self) {
         
-        [self setBackgroundColor:[UIColor cloudsColor]];
         
-        [self registerNib:[UINib nibWithNibName:@"ChannelTableViewCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
-        
-        self.delegate = self;
-        self.dataSource = self;
-        
-        _channelArray = [[NSMutableArray alloc] init];
-        
-        //fetch hottest channels from server
-        [self fetchHottestChannels];
-        [self reloadData];
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    
+    [self setBackgroundColor:[UIColor cloudsColor]];
+    
+    [self registerNib:[UINib nibWithNibName:@"ChannelTableViewCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
+    
+    self.delegate = self;
+    self.dataSource = self;
+    
+    self.tableFooterView = [[UIView alloc] init];
+    
+    self.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRefresh)];
+    self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+    
+    _channelArray = [[NSMutableArray alloc] init];
+    
+    //fetch hottest channels from server
+    [self fetchNewestChannels];
+}
+
+- (void)headerRefresh {
+    
+    [self fetchNewestChannels];
+}
+
+- (void)footerRefresh {
+    
+    [self.footer endRefreshing];
 }
 
 #pragma mark - Table view data source
@@ -65,6 +89,10 @@ static NSString * const reuseIdentifier = @"hottestCell";
     //    [cell setSeparatorHeight:10.0f];
     
     
+    cell.channelTitle.text = [(ChannelObject *)_channelArray[indexPath.row] channelTitle];
+    cell.channelDescription.text = [(ChannelObject *)_channelArray[indexPath.row] channelDescription];
+    NSURL *url = [(ChannelObject *)_channelArray[indexPath.row] channelBackgroundImageURL];
+    [cell.backgroundImageView setImageWithURL:url];
     
     
     return cell;
@@ -77,18 +105,41 @@ static NSString * const reuseIdentifier = @"hottestCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 70;
+    return 140;
 }
 
 #pragma mark - data source update
 
-- (void)fetchHottestChannels {
+- (void)fetchNewestChannels {
     
-    //still has problems
-//    NSError *error = nil;
-//    AVCloudQueryResult *result = [AVQuery doCloudQueryWithCQL:@"select belongedChannel from Post group by belongedChannel orderby count(belongedChannel) desc" error:&error];
-//    NSLog(@"channel : %@", result.results[0]);
-    
+    [self.header beginRefreshing];
+    [_channelArray removeAllObjects];
+    NSError *error;
+    AVQuery *query = [AVQuery queryWithClassName:@"Channel"];
+    [query whereKey:@"objectId" notEqualTo:@"5590fe3be4b00777039b5110"];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 10;
+    NSArray *resultArray = [query findObjects:&error];
+    NSMutableArray *channelArray = [[NSMutableArray alloc] init];
+    if ( !error) {
+        if ( resultArray.count) {
+            for (AVObject *obj in resultArray) {
+                ChannelObject *channel = [[ChannelObject alloc] init];
+                channel.channelTitle = [obj objectForKey:@"channelTitle"];
+                channel.channelDescription = [obj objectForKey:@"channelDescription"];
+                channel.channelBackgroundImageURL = [NSURL URLWithString:[obj objectForKey:@"channelBackgroundImageURL"]];
+                [channelArray addObject:channel];
+            }
+            _channelArray = [channelArray mutableCopy];
+        } else {
+            //no content
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Channel No Content" object:nil];
+        }
+    } else {
+        //fail fatch
+        [Utils showFailOperationWithTitle:@"加载逼格夹失败..." inSeconds:2 followedByOperation:nil];
+    }
+    [self.header endRefreshing];
 }
 
 @end

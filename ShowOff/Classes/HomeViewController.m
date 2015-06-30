@@ -84,17 +84,13 @@ typedef NS_ENUM(NSInteger, PageName) {
     _createChannelBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStylePlain target:self action:@selector(createChannel)];
     _createPostBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(createPost)];
     
-    //configure table header & footer
-    _channelTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(hottestHeaderRefresh)];
-    _channelTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(hottestFooterRefresh)];
-    
-    _postTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(newestHeaderRefresh)];
-    _postTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(newestFooterRefresh)];
-    
     //hide post table view
     currentPageName = CHANNEL_PAGE;
     [self.navigationItem setRightBarButtonItem:_createChannelBarButtonItem];
     [_postTableView setHidden:YES];
+    
+    //register notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoContentView) name:@"Channel No Content" object:nil];
 
 }
 
@@ -115,6 +111,11 @@ typedef NS_ENUM(NSInteger, PageName) {
         default:
             break;
     }
+}
+
+- (void)showNoContentView {
+    
+    
 }
 
 - (void)createChannel {

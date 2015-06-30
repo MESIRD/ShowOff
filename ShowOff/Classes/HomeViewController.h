@@ -15,8 +15,4 @@
 @property (weak, nonatomic) IBOutlet PostTableView *postTableView;
 @property (weak, nonatomic) IBOutlet ChannelTableView *channelTableView;
 
-
-
-
-
 @end

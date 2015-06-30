@@ -180,7 +180,7 @@
     if ( w*1.0/h > ratio) {
         rect = CGRectMake((w-h*ratio)/2, 0, h*ratio, h);
     } else {
-        rect = CGRectMake(0, (h-w/ratio), w, w/ratio);
+        rect = CGRectMake(0, (h-w/ratio)/2, w, w/ratio);
     }
     NSLog(@"rect : %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     UIImage *clipedImage = [Utils clipImage:image inRect:rect];
