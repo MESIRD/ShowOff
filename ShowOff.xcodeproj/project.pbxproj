@@ -32,6 +32,8 @@
 		F5334DE31B3D47FE00FE9502 /* AppSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE21B3D47FE00FE9502 /* AppSettingTableViewController.m */; };
 		F5334DE61B3D485600FE9502 /* AppSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE51B3D485600FE9502 /* AppSettingTableViewCell.m */; };
 		F5334DEA1B3D55E700FE9502 /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5334DE91B3D55E700FE9502 /* PasswordChangeViewController.m */; };
+		F566ACAD1B438537000EDB9A /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F566ACAC1B438537000EDB9A /* PostTableViewCell.xib */; };
+		F566ACB11B43F7F1000EDB9A /* NSString+SizeCalculation.m in Sources */ = {isa = PBXBuildFile; fileRef = F566ACB01B43F7F1000EDB9A /* NSString+SizeCalculation.m */; };
 		F57E462B1B38FF8E004D4DB6 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E462A1B38FF8E004D4DB6 /* Utils.m */; };
 		F57E462E1B3926E0004D4DB6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E462D1B3926E0004D4DB6 /* LoginViewController.m */; };
 		F57E46311B3934B4004D4DB6 /* UserNamePasswordInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F57E46301B3934B4004D4DB6 /* UserNamePasswordInputViewController.m */; };
@@ -123,6 +125,9 @@
 		F5334DE51B3D485600FE9502 /* AppSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppSettingTableViewCell.m; path = Classes/AppSettingTableViewCell.m; sourceTree = "<group>"; };
 		F5334DE81B3D55E700FE9502 /* PasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordChangeViewController.h; path = Classes/PasswordChangeViewController.h; sourceTree = "<group>"; };
 		F5334DE91B3D55E700FE9502 /* PasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasswordChangeViewController.m; path = Classes/PasswordChangeViewController.m; sourceTree = "<group>"; };
+		F566ACAC1B438537000EDB9A /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		F566ACAF1B43F7F1000EDB9A /* NSString+SizeCalculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SizeCalculation.h"; path = "Classes/NSString+SizeCalculation.h"; sourceTree = "<group>"; };
+		F566ACB01B43F7F1000EDB9A /* NSString+SizeCalculation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SizeCalculation.m"; path = "Classes/NSString+SizeCalculation.m"; sourceTree = "<group>"; };
 		F57E46291B38FF8E004D4DB6 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		F57E462A1B38FF8E004D4DB6 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		F57E462C1B3926E0004D4DB6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Classes/LoginViewController.h; sourceTree = "<group>"; };
@@ -320,6 +325,15 @@
 			name = StoryBoards;
 			sourceTree = "<group>";
 		};
+		F566ACAE1B43F7C1000EDB9A /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				F566ACAF1B43F7F1000EDB9A /* NSString+SizeCalculation.h */,
+				F566ACB01B43F7F1000EDB9A /* NSString+SizeCalculation.m */,
+			);
+			name = NSString;
+			sourceTree = "<group>";
+		};
 		F58AFCAE1B33B71300E1AC4C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				F5022B131B4114A200631760 /* ChannelTableViewCell.xib */,
+				F566ACAC1B438537000EDB9A /* PostTableViewCell.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -393,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				F58C516A1B3ADC9000DEDE11 /* MSDTextView */,
+				F566ACAE1B43F7C1000EDB9A /* NSString */,
 				F58AFCCE1B33E2FD00E1AC4C /* Objects */,
 			);
 			name = Universal;
@@ -610,6 +626,7 @@
 				D79ACB5D1B37F99500E01D01 /* Main.storyboard in Resources */,
 				D73588AF1B2F3EF000BB80A6 /* LaunchScreen.xib in Resources */,
 				F58C51491B3A83D000DEDE11 /* MeInfoTableViewCell.xib in Resources */,
+				F566ACAD1B438537000EDB9A /* PostTableViewCell.xib in Resources */,
 				D73588AC1B2F3EF000BB80A6 /* Images.xcassets in Resources */,
 				F5022B141B4114A200631760 /* ChannelTableViewCell.xib in Resources */,
 			);
@@ -670,6 +687,7 @@
 				F5022B1D1B413E3B00631760 /* PostCreateViewController.m in Sources */,
 				F58C51631B3AAF3500DEDE11 /* MeInfoSettingTableViewCell.m in Sources */,
 				F58C51601B3AAECD00DEDE11 /* MeInfoSettingIndicatorTableViewCell.m in Sources */,
+				F566ACB11B43F7F1000EDB9A /* NSString+SizeCalculation.m in Sources */,
 				F58C51661B3AB39D00DEDE11 /* NickNameChangeViewController.m in Sources */,
 				F58AFCD11B33E31000E1AC4C /* User.m in Sources */,
 				D7B8D5591B3EB16200356F95 /* AboutViewController.m in Sources */,

@@ -10,4 +10,12 @@
 
 @interface PostTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UITextView *postTextView;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *postImages;
+
+
+//configure the cell content and return the estimated height
+- (CGFloat)configurePostText:(NSString *)postText PostImages:(NSArray *)postImageURLs withUserAvatarURL:(NSURL *)userAvatarURL;
+
 @end

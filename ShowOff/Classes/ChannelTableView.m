@@ -25,16 +25,6 @@
 
 static NSString * const reuseIdentifier = @"channelCell";
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    
-    self = [super initWithCoder:aDecoder];
-    if ( self) {
-        
-        
-    }
-    return self;
-}
-
 - (void)awakeFromNib {
     
     [self setBackgroundColor:[UIColor cloudsColor]];
@@ -64,7 +54,7 @@ static NSString * const reuseIdentifier = @"channelCell";
 
 - (void)footerRefresh {
     
-    [self.footer endRefreshing];
+    [self fetchOlderChannels];
 }
 
 #pragma mark - Table view data source
@@ -85,15 +75,10 @@ static NSString * const reuseIdentifier = @"channelCell";
     ChannelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    //    [cell configureFlatCellWithColor:[UIColor greenSeaColor] selectedColor:[UIColor silverColor] roundingCorners:UIRectCornerAllCorners];
-    //    [cell setSeparatorHeight:10.0f];
-    
-    
     cell.channelTitle.text = [(ChannelObject *)_channelArray[indexPath.row] channelTitle];
     cell.channelDescription.text = [(ChannelObject *)_channelArray[indexPath.row] channelDescription];
     NSURL *url = [(ChannelObject *)_channelArray[indexPath.row] channelBackgroundImageURL];
     [cell.backgroundImageView setImageWithURL:url];
-    
     
     return cell;
 }
@@ -112,34 +97,68 @@ static NSString * const reuseIdentifier = @"channelCell";
 
 - (void)fetchNewestChannels {
     
-    [self.header beginRefreshing];
     [_channelArray removeAllObjects];
-    NSError *error;
     AVQuery *query = [AVQuery queryWithClassName:@"Channel"];
     [query whereKey:@"objectId" notEqualTo:@"5590fe3be4b00777039b5110"];
-    [query orderByDescending:@"createdAt"];
+    [query orderByDescending:@"updatedAt"];
     query.limit = 10;
-    NSArray *resultArray = [query findObjects:&error];
-    NSMutableArray *channelArray = [[NSMutableArray alloc] init];
-    if ( !error) {
-        if ( resultArray.count) {
-            for (AVObject *obj in resultArray) {
-                ChannelObject *channel = [[ChannelObject alloc] init];
-                channel.channelTitle = [obj objectForKey:@"channelTitle"];
-                channel.channelDescription = [obj objectForKey:@"channelDescription"];
-                channel.channelBackgroundImageURL = [NSURL URLWithString:[obj objectForKey:@"channelBackgroundImageURL"]];
-                [channelArray addObject:channel];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if ( !error) {
+            if ( objects.count) {
+                //has several channels
+                NSMutableArray *channels = [[NSMutableArray alloc] init];
+                for (AVObject *obj in objects) {
+                    ChannelObject *channel = [[ChannelObject alloc] init];
+                    channel.channelTitle = [obj objectForKey:@"channelTitle"];
+                    channel.channelDescription = [obj objectForKey:@"channelDescription"];
+                    channel.channelBackgroundImageURL = [NSURL URLWithString:[obj objectForKey:@"channelBackgroundImageURL"]];
+                    [channels addObject:channel];
+                }
+                _channelArray = [channels mutableCopy];
+                [self reloadData];
+                [self.header endRefreshing];
+            } else {
+                //channel amount is zero
+                [self.header endRefreshing];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"City Has No Channel" object:nil];
             }
-            _channelArray = [channelArray mutableCopy];
         } else {
-            //no content
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Channel No Content" object:nil];
+            //fetching channels with error
+            [self.header endRefreshing];
+            [Utils showFailOperationWithTitle:@"加载逼格夹失败..." inSeconds:2 followedByOperation:nil];
         }
-    } else {
-        //fail fatch
-        [Utils showFailOperationWithTitle:@"加载逼格夹失败..." inSeconds:2 followedByOperation:nil];
-    }
-    [self.header endRefreshing];
+    }];
+}
+
+- (void)fetchOlderChannels {
+    
+    AVQuery *query = [AVQuery queryWithClassName:@"Channel"];
+    [query whereKey:@"objectId" notEqualTo:@"5590fe3be4b00777039b5110"];
+    [query orderByDescending:@"updatedAt"];
+    query.limit = 10;
+    query.skip = _channelArray.count;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if ( !error) {
+            if ( objects.count) {
+                //has several older channels
+                NSMutableArray *channels = [[NSMutableArray alloc] init];
+                for (AVObject *obj in objects) {
+                    ChannelObject *channel = [[ChannelObject alloc] init];
+                    channel.channelTitle = [obj objectForKey:@"channelTitle"];
+                    channel.channelDescription = [obj objectForKey:@"channelDescription"];
+                    channel.channelBackgroundImageURL = [NSURL URLWithString:[obj objectForKey:@"channelBackgroundImageURL"]];
+                    [channels addObject:channel];
+                }
+                [_channelArray addObjectsFromArray:channels];
+            } else {
+                //there's no more channels could be loaded
+                [self.footer noticeNoMoreData];
+            }
+        } else {
+            //fetching channels with error
+            [Utils showFailOperationWithTitle:@"加载逼格夹失败..." inSeconds:2 followedByOperation:nil];
+        }
+    }];
 }
 
 @end

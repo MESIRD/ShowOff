@@ -20,9 +20,7 @@
 
 - (NSURL *)fetchUserAvatarURL {
     
-    AVQuery *queryUser = [AVQuery queryWithClassName:@"_User"];
-    [queryUser whereKey:@"objectId" equalTo:_userId];
-    AVUser *user = (AVUser *)[queryUser getFirstObject];
+    AVUser *user = (AVUser *)[_postUser fetchIfNeeded];
     AVQuery *queryUserPreference = [AVQuery queryWithClassName:@"UserPreference"];
     [queryUserPreference whereKey:@"belongedUser" equalTo:user];
     AVObject *userPreference = [queryUserPreference getFirstObject];

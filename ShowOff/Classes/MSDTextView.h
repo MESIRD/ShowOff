@@ -20,5 +20,5 @@
 
 
 - (void)textViewDidChange:(UITextView *)textView;
-
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
 @end

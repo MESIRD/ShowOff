@@ -232,7 +232,7 @@
 - (void)textViewDidChange:(UITextView *)textView {
     
     if ( [textView isKindOfClass:[MSDTextView class]]) {
-        [_channelDescription textViewDidChange:textView];
+        [(MSDTextView *)textView textViewDidChange:textView];
     }
     
 }

@@ -80,7 +80,7 @@
     
     _imagePicker = [[UIImagePickerController alloc] init];
     _imagePicker.delegate = self;
-    _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    _imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     _imagePicker.allowsEditing = YES;
     _imagePicker.navigationBar.tintColor = [UIColor cloudsColor];
     _imagePicker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor cloudsColor]};
@@ -274,7 +274,7 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.section) {
-        case 0:
+        case 0: {
             //avatar change
             switch (indexPath.row) {
                 case 0:
@@ -289,7 +289,8 @@
                     break;
             }
             break;
-        case 1:
+        }
+        case 1: {
             switch (indexPath.row) {
                 case 0:
                     //nick name
@@ -304,7 +305,8 @@
             }
             //
             break;
-        case 2:
+        }
+        case 2: {
             //
             switch (indexPath.row) {
                 case 0:
@@ -319,6 +321,7 @@
                     break;
             }
             break;
+        }
         default:
             break;
     }
@@ -406,6 +409,16 @@
     ColorChangeCollectionViewController *vc = [sb instantiateViewControllerWithIdentifier:@"ColorChangeCollectionViewController"];
     vc.selectedColor = _meInfoSettingGroup[0][1][1];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    // bug fixes: UIIMagePickerController使用中偷换StatusBar颜色的问题
+    if ( [navigationController isKindOfClass:[UIImagePickerController class]] &&
+        ( (UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    }
 }
 
 /*

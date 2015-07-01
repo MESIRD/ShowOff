@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "MeViewController.h"
 #import "ChannelCreateViewController.h"
+#import "PostCreateViewController.h"
 #import "Universal.h"
 #import "Utils.h"
 #import <FlatUIKit/FlatUIKit.h>
@@ -17,7 +18,7 @@
 
 
 typedef NS_ENUM(NSInteger, PageName) {
-    CHANNEL_PAGE = 1,
+    CHANNEL_PAGE = 0,
     POST_PAGE
 };
 
@@ -36,6 +37,8 @@ typedef NS_ENUM(NSInteger, PageName) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     //set navigation bar color
     [self.navigationController.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
@@ -77,7 +80,7 @@ typedef NS_ENUM(NSInteger, PageName) {
     segmentedControl.borderColor = [UIColor turquoiseColor];
     segmentedControl.selectedSegmentIndex = 0;
     
-    [segmentedControl addTarget:self action:@selector(exchangeHomePage) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl addTarget:self action:@selector(exchangeHomePage:) forControlEvents:UIControlEventValueChanged];
     [self.navigationItem setTitleView:segmentedControl];
     
     //create button item
@@ -94,20 +97,21 @@ typedef NS_ENUM(NSInteger, PageName) {
 
 }
 
-- (void)exchangeHomePage {
+- (void)exchangeHomePage:(UISegmentedControl *)sender {
     
-    switch (currentPageName) {
+    NSInteger selectedIndex = [sender selectedSegmentIndex];
+    switch (selectedIndex) {
         case CHANNEL_PAGE:
-            [_channelTableView setHidden:YES];
-            [_postTableView setHidden:NO];
-            [self.navigationItem setRightBarButtonItem:_createPostBarButtonItem];
-            currentPageName = POST_PAGE;
-            break;
-        case POST_PAGE:
             [_channelTableView setHidden:NO];
             [_postTableView setHidden:YES];
             [self.navigationItem setRightBarButtonItem:_createChannelBarButtonItem];
             currentPageName = CHANNEL_PAGE;
+            break;
+        case POST_PAGE:
+            [_channelTableView setHidden:YES];
+            [_postTableView setHidden:NO];
+            [self.navigationItem setRightBarButtonItem:_createPostBarButtonItem];
+            currentPageName = POST_PAGE;
         default:
             break;
     }
@@ -126,7 +130,9 @@ typedef NS_ENUM(NSInteger, PageName) {
 
 - (void)createPost {
     
-    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    PostCreateViewController *vc = [sb instantiateViewControllerWithIdentifier:@"PostCreateViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)hottestHeaderRefresh {

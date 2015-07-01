@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSDTextView.h"
+#import <FlatUIKit/FUIButton.h>
 
 @interface PostCreateViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet MSDTextView *postTextView;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *postImageViews;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *addImageSigns;
+@property (strong, nonatomic) IBOutletCollection(FUIButton) NSArray *removeButtons;
+
 
 @end

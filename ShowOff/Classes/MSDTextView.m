@@ -50,6 +50,24 @@
     _borderWidth = borderWidth;
 }
 
+- (void)awakeFromNib {
+    
+    _placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake( 5, 3, 200, 30)];
+    [_placeHolderLabel setFont:[UIFont systemFontOfSize:16]];
+    [_placeHolderLabel setTextColor:[UIColor colorWithWhite:0.7 alpha:1]];
+    [self addSubview:_placeHolderLabel];
+    
+    self.delegate = self;
+    self.returnKeyType = UIReturnKeyDone;
+    self.font = [UIFont systemFontOfSize:16];
+    //        self.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    
+    self.layer.cornerRadius = 5;
+    self.layer.masksToBounds = YES;
+    self.layer.borderColor = [UIColor colorWithRed:87.0/255 green:162.0/255 blue:152.0/255 alpha:1].CGColor;
+    _borderWidth = 0.0;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
@@ -72,20 +90,6 @@
     }
     return self;
 }
-
-
-
-//- (void)textViewDidBeginEditing:(UITextView *)textView {
-//    
-//    //show border
-////    self.layer.borderWidth = _borderWidth;
-//}
-//
-//- (void)textViewDidEndEditing:(UITextView *)textView {
-//    
-//    //hide border
-////    self.layer.borderWidth = 0.0;
-//}
 
 - (void)textViewDidChange:(UITextView *)textView {
     

@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface PostObject : NSObject
 
 @property (strong, nonatomic) NSArray   *postImages;
-@property (assign, nonatomic) NSString  *postText;
-@property (strong, nonatomic) NSString  *userId;
+@property (strong, nonatomic) NSString  *postText;
+@property (strong, nonatomic) AVUser    *postUser;
 
 - (NSURL *)fetchUserAvatarURL;
 

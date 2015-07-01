@@ -22,6 +22,8 @@ typedef void (^VoidOperationBlock)(void);
 + (UIImage *)getImageFilledByColor:(UIColor *)color;
 + (UIImage *)clipImage:(UIImage *)image inRect:(CGRect)rect;
 
++ (CGSize)getSizeOfTextView:(UITextView *)textView withinSize:(CGSize)size;
+
 + (void)showFlatAlertView:(NSString *)title andMessage:(NSString *)message;
 + (void)showProcessingOperation;
 + (void)hideProcessingOperation;

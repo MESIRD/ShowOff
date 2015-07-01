@@ -66,6 +66,11 @@
     return retImage;
 }
 
++ (CGSize)getSizeOfTextView:(UITextView *)textView withinSize:(CGSize)size {
+    
+    return [textView sizeThatFits:size];
+}
+
 + (UIImage *)clipImage:(UIImage *)image inRect:(CGRect)rect {
     
     CGImageRef imageRef = image.CGImage;
