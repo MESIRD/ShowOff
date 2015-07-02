@@ -11,8 +11,9 @@
 @interface PostTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
-@property (weak, nonatomic) IBOutlet UITextView *postTextView;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *postImages;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *postUserNickName;
 
 
 //configure the cell content and return the estimated height

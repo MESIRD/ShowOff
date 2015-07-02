@@ -22,7 +22,11 @@ typedef void (^VoidOperationBlock)(void);
 + (UIImage *)getImageFilledByColor:(UIColor *)color;
 + (UIImage *)clipImage:(UIImage *)image inRect:(CGRect)rect;
 
++ (UIButton *)getCustomBarButtonViewWithTitle:(NSString *)buttonTitle target:(id)target andAction:(SEL)action;
+
 + (CGSize)getSizeOfTextView:(UITextView *)textView withinSize:(CGSize)size;
+
++ (NSString *)getTimeIntervalBetweenNowAndDate:(NSDate *)date;
 
 + (void)showFlatAlertView:(NSString *)title andMessage:(NSString *)message;
 + (void)showProcessingOperation;

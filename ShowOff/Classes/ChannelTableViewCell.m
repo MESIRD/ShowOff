@@ -7,9 +7,15 @@
 //
 
 #import "ChannelTableViewCell.h"
+#import "Universal.h"
 
 @implementation ChannelTableViewCell
 
-
+- (void)awakeFromNib {
+    
+    self.backgroundColor = [UIColor clearColor];
+    _channelTitle.font = [UIFont fontWithName:@"RTWS YueGothic Demo" size:22];
+    _concernedNumber.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:14];
+}
 
 @end

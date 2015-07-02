@@ -68,14 +68,14 @@ typedef NS_ENUM(NSInteger, PageName) {
     //add segmentedControl
     FUISegmentedControl *segmentedControl = [[FUISegmentedControl alloc] initWithItems:@[@"城里人", @"乡下人"]];
     
-    segmentedControl.selectedFont = [UIFont boldFlatFontOfSize:12];
-    segmentedControl.deselectedFont = [UIFont boldFlatFontOfSize:12];
+    segmentedControl.selectedFont = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:14];
+    segmentedControl.deselectedFont = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:14];
     segmentedControl.selectedColor = [UIColor turquoiseColor];
     segmentedControl.highlightedColor = [UIColor turquoiseColor];
     segmentedControl.deselectedColor = [UIColor clearColor];
     segmentedControl.dividerColor = [UIColor turquoiseColor];
     segmentedControl.cornerRadius = 5.0;
-    segmentedControl.frame = CGRectMake(segmentedControl.frame.origin.x, segmentedControl.frame.origin.y, 100, 30);
+    segmentedControl.frame = CGRectMake(segmentedControl.frame.origin.x, segmentedControl.frame.origin.y, 120, 30);
     segmentedControl.borderWidth = 1.0f;
     segmentedControl.borderColor = [UIColor turquoiseColor];
     segmentedControl.selectedSegmentIndex = 0;
@@ -83,9 +83,13 @@ typedef NS_ENUM(NSInteger, PageName) {
     [segmentedControl addTarget:self action:@selector(exchangeHomePage:) forControlEvents:UIControlEventValueChanged];
     [self.navigationItem setTitleView:segmentedControl];
     
+    
     //create button item
-    _createChannelBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStylePlain target:self action:@selector(createChannel)];
-    _createPostBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(createPost)];
+    UIButton *createChannelButton = [Utils getCustomBarButtonViewWithTitle:@"创建" target:self andAction:@selector(createChannel)];
+    _createChannelBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:createChannelButton];
+
+    UIButton *createPostButton = [Utils getCustomBarButtonViewWithTitle:@"添加" target:self andAction:@selector(createPost)];
+    _createPostBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:createPostButton];
     
     //hide post table view
     currentPageName = CHANNEL_PAGE;
@@ -124,15 +128,25 @@ typedef NS_ENUM(NSInteger, PageName) {
 
 - (void)createChannel {
     
-    ChannelCreateViewController *vc = [[ChannelCreateViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ( [AVUser currentUser]) {
+        ChannelCreateViewController *vc = [[ChannelCreateViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        [Utils showFlatAlertView:@"提示" andMessage:@"请在登录后进行操作"];
+    }
+    
 }
 
 - (void)createPost {
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    PostCreateViewController *vc = [sb instantiateViewControllerWithIdentifier:@"PostCreateViewController"];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ( [AVUser currentUser]) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        PostCreateViewController *vc = [sb instantiateViewControllerWithIdentifier:@"PostCreateViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        [Utils showFlatAlertView:@"提示" andMessage:@"请在登录后进行操作"];
+    }
+    
 }
 
 - (void)hottestHeaderRefresh {

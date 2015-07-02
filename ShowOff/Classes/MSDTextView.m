@@ -11,11 +11,17 @@
 
 @interface MSDTextView() <UITextViewDelegate>
 
-@property (nonatomic)   UILabel *placeHolderLabel;
+@property (nonatomic)   UILabel  *placeHolderLabel;
 
 @end
 
 @implementation MSDTextView
+
+- (void)setFont:(UIFont *)font {
+    
+    [super setFont:font];
+    [_placeHolderLabel setFont:font];
+}
 
 - (void)setText:(NSString *)text {
     
@@ -60,7 +66,6 @@
     self.delegate = self;
     self.returnKeyType = UIReturnKeyDone;
     self.font = [UIFont systemFontOfSize:16];
-    //        self.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
     
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;

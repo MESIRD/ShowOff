@@ -61,6 +61,7 @@
     
     //create channel description textview
     _channelDescription = [[MSDTextView alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, 120)];
+    _channelDescription.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16];
     _channelDescription.delegate = self;
     _channelDescription.placeHolder = @"逼格夹描述";
     [self.view addSubview:_channelDescription];
@@ -72,19 +73,19 @@
     [self.view addSubview:_channelBackgroundImage];
     
     _imageLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-160)/2, 140, 160, 20)];
-    _imageLabel.font = [UIFont systemFontOfSize:16];
+    _imageLabel.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16];
     _imageLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1];
     _imageLabel.textAlignment = NSTextAlignmentCenter;
     _imageLabel.text = @"逼格夹背景图片";
     [self.view addSubview:_imageLabel];
     
     _channelTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, SCREEN_WIDTH-70, 30)];
-    _channelTitleLabel.font = [UIFont boldFlatFontOfSize:25];
+    _channelTitleLabel.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:25];
     _channelTitleLabel.textColor = [UIColor cloudsColor];
     [_channelBackgroundImage addSubview:_channelTitleLabel];
     
     _channelDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake( SCREEN_WIDTH-245, 40, 240, 90)];
-    _channelDescriptionLabel.font = [UIFont systemFontOfSize:15];
+    _channelDescriptionLabel.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:15];
     _channelDescriptionLabel.textColor = [UIColor cloudsColor];
     _channelDescriptionLabel.numberOfLines = 5;
     _channelDescriptionLabel.textAlignment = NSTextAlignmentRight;
@@ -100,8 +101,8 @@
     _removeButton.hidden = YES;
     
     //create 'create' button
-    UIBarButtonItem *createChannelButton = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStylePlain target:self action:@selector(createChannel)];
-    [self.navigationItem setRightBarButtonItem:createChannelButton];
+    UIButton *createChannelButton = [Utils getCustomBarButtonViewWithTitle:@"创建" target:self andAction:@selector(createChannel)];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:createChannelButton]];
     
 }
 

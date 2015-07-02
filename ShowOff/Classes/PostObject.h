@@ -14,7 +14,9 @@
 @property (strong, nonatomic) NSArray   *postImages;
 @property (strong, nonatomic) NSString  *postText;
 @property (strong, nonatomic) AVUser    *postUser;
-
-- (NSURL *)fetchUserAvatarURL;
+@property (strong, nonatomic) NSURL     *userAvatarURL;
+@property (strong, nonatomic) NSString  *postUserNickName;
+@property (strong, nonatomic) NSDate    *postDate;
+@property (nonatomic)         CGFloat    cellHeight;
 
 @end

@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *channelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *concernedNumber;
-@property (weak, nonatomic) IBOutlet UILabel *channelDescription;
 
 
 @end

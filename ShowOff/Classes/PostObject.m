@@ -18,13 +18,15 @@
 
 @implementation PostObject
 
-- (NSURL *)fetchUserAvatarURL {
+- (void)setPostUser:(AVUser *)postUser {
     
-    AVUser *user = (AVUser *)[_postUser fetchIfNeeded];
+    _postUser = postUser;
+    _postUser = (AVUser *)[_postUser fetchIfNeeded];
     AVQuery *queryUserPreference = [AVQuery queryWithClassName:@"UserPreference"];
-    [queryUserPreference whereKey:@"belongedUser" equalTo:user];
+    [queryUserPreference whereKey:@"belongedUser" equalTo:_postUser];
     AVObject *userPreference = [queryUserPreference getFirstObject];
-    return [NSURL URLWithString:[userPreference objectForKey:@"userAvatarURL"]];
+    _userAvatarURL = [NSURL URLWithString:[userPreference objectForKey:@"userAvatarURL"]];
+    _postUserNickName = [userPreference objectForKey:@"userNickName"];
 }
 
 @end

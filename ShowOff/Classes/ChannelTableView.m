@@ -11,7 +11,7 @@
 #import "ChannelObject.h"
 #import "Utils.h"
 #import <FlatUIKit/FlatUIKit.h>
-#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <MJRefresh/MJRefresh.h>
 #import <AVOSCloud/AVOSCloud.h>
 
@@ -75,10 +75,10 @@ static NSString * const reuseIdentifier = @"channelCell";
     ChannelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    cell.backgroundImageView.image = nil;
     cell.channelTitle.text = [(ChannelObject *)_channelArray[indexPath.row] channelTitle];
-    cell.channelDescription.text = [(ChannelObject *)_channelArray[indexPath.row] channelDescription];
     NSURL *url = [(ChannelObject *)_channelArray[indexPath.row] channelBackgroundImageURL];
-    [cell.backgroundImageView setImageWithURL:url];
+    [cell.backgroundImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"default_channel_image"]];
     
     return cell;
 }
@@ -90,7 +90,7 @@ static NSString * const reuseIdentifier = @"channelCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 140;
+    return 150;
 }
 
 #pragma mark - data source update

@@ -11,7 +11,7 @@
 #import "MeInfoSettingTableViewController.h"
 #import "Utils.h"
 #import "UserPreference.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <AVOSCloud/AVOSCloud.h>
 
 @interface MeInfoViewController ()
@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     //set navigationbar tint color
     [self.navigationController.navigationBar setTintColor:[UIColor cloudsColor]];
@@ -64,7 +66,7 @@
 
 - (void)updateAvatar {
     
-    [_avatar setImageWithURL:[NSURL URLWithString:[[UserPreference sharedUserPreference] userAvatarURL]] placeholderImage:[UIImage imageNamed:@"default_avatar_circle"]];
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:[[UserPreference sharedUserPreference] userAvatarURL]] placeholderImage:[UIImage imageNamed:@"default_avatar_circle"]];
 }
 
 - (void)updateBackgroundColor {

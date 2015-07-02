@@ -7,8 +7,11 @@
 //
 
 #import "MeInfoTableView.h"
-#import "MeInfoTableViewCell.h"
-#import "MJRefresh.h"
+#import "PostTableViewCell.h"
+#import "PostObject.h"
+#import "Utils.h"
+#import <MJRefresh/MJRefresh.h>
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface MeInfoTableView()
 
@@ -18,7 +21,7 @@
 
 @implementation MeInfoTableView
 
-static NSString * const reuseIdentifier = @"meInfoTableViewCell";
+static NSString * const reuseIdentifier = @"postCell";
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     
@@ -28,7 +31,7 @@ static NSString * const reuseIdentifier = @"meInfoTableViewCell";
         //initialize data source
         _mePostsArray = [[NSMutableArray alloc] init];
         
-        [self fetchMePosts];
+        [self fetchNewestMePosts];
         
         //set delegate and data source
         self.delegate = self;
@@ -36,11 +39,11 @@ static NSString * const reuseIdentifier = @"meInfoTableViewCell";
         
         //set table view header and footer
 
-        self.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshMePosts)];
-        self.footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(addMorePosts)];
+        self.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRefresh)];
+        self.footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
         
         //register cell class
-        [self registerNib:[UINib nibWithNibName:@"MeInfoTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:reuseIdentifier];
+        [self registerNib:[UINib nibWithNibName:@"PostTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:reuseIdentifier];
     }
     
     return self;
@@ -58,10 +61,12 @@ static NSString * const reuseIdentifier = @"meInfoTableViewCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MeInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.postText.text = _mePostsArray[indexPath.row][@"postText"];
-    cell.avatar.image = [UIImage imageNamed:_mePostsArray[indexPath.row][@"avatar"]];
-    cell.nickName.text = _mePostsArray[indexPath.row][@"nickName"];
+    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
+    //configure the cell
+    [cell configurePostText:[_mePostsArray[indexPath.row] postText]
+                 PostImages:[_mePostsArray[indexPath.row] postImages]
+          withUserAvatarURL:[_mePostsArray[indexPath.row] userAvatarURL]];
     
     return cell;
     
@@ -69,39 +74,109 @@ static NSString * const reuseIdentifier = @"meInfoTableViewCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([_mePostsArray[indexPath.row][@"hasPhoto"] boolValue]) {
-        return 150;
-    } else {
-        return 94;
-    }
+    return [_mePostsArray[indexPath.row] cellHeight];
 }
 
-- (void)fetchMePosts {
+- (void)headerRefresh {
     
-    //fetching posts from server using GCD
-    [self.header beginRefreshing];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        //fetching operations
-        sleep(1);
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            if (_mePostsArray.count == 0) {
+    [self fetchNewestMePosts];
+}
+
+- (void)footerRefresh {
+    
+    [self fetchOlderMePosts];
+}
+
+- (void)fetchNewestMePosts {
+    
+    [_mePostsArray removeAllObjects];
+    AVQuery *queryPost = [AVQuery queryWithClassName:@"Post"];
+    [queryPost whereKey:@"postCreater" equalTo:[AVUser currentUser]];
+    [queryPost orderByDescending:@"createdAt"];
+    queryPost.limit = 10;
+    [queryPost findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if ( !error) {
+            if ( objects.count) {
+                //
+                NSMutableArray *posts = [[NSMutableArray alloc] init];
+                for (AVObject *obj in objects) {
+                    PostObject *post = [[PostObject alloc] init];
+                    post.postText = [obj objectForKey:@"postText"];
+                    post.postImages = [obj objectForKey:@"postImageURLs"];
+                    post.postUser = [obj objectForKey:@"postCreater"];
+                    post.postDate = [obj objectForKey:@"createdAt"];
+                    post.cellHeight = [self getCellHeightWithText:post.postText hasImage:(post.postImages.count > 0)];
+                    [posts addObject:post];
+                }
+                _mePostsArray = [posts mutableCopy];
+                [self reloadData];
+                [self.header endRefreshing];
+            } else {
+                //post amount is zero
                 [self.header endRefreshing];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"Me Post Number Zero" object:nil];
             }
-        });
-    });
+        } else {
+            //fetching error
+            [self.header endRefreshing];
+            [Utils showFailOperationWithTitle:@"加载状态失败..." inSeconds:2 followedByOperation:nil];
+        }
+    }];
 }
 
-- (void)refreshMePosts {
+- (void)fetchOlderMePosts {
     
-    [self.header endRefreshing];
+    AVQuery *queryPost = [AVQuery queryWithClassName:@"Post"];
+    [queryPost whereKey:@"postCreater" equalTo:[AVUser currentUser]];
+    [queryPost orderByDescending:@"createdAt"];
+    queryPost.skip = _mePostsArray.count;
+    queryPost.limit = 10;
+    [queryPost findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if ( !error) {
+            if ( objects.count) {
+                //
+                NSMutableArray *posts = [[NSMutableArray alloc] init];
+                for (AVObject *obj in objects) {
+                    PostObject *post = [[PostObject alloc] init];
+                    post.postText = [obj objectForKey:@"postText"];
+                    post.postImages = [obj objectForKey:@"postImageURLs"];
+                    post.postUser = [obj objectForKey:@"postCreater"];
+                    post.postDate = [obj objectForKey:@"createdAt"];
+                    post.cellHeight = [self getCellHeightWithText:post.postText hasImage:(post.postImages.count > 0)];
+                    [posts addObject:post];
+                }
+                [_mePostsArray addObjectsFromArray:posts];
+                [self reloadData];
+                [self.header endRefreshing];
+            } else {
+                //post amount is zero
+                [self.header endRefreshing];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"Me Post Number Zero" object:nil];
+            }
+        } else {
+            //fetching error
+            [self.header endRefreshing];
+            [Utils showFailOperationWithTitle:@"加载状态失败..." inSeconds:2 followedByOperation:nil];
+        }
+    }];
 }
 
-- (void)addMorePosts{
+- (CGFloat)getCellHeightWithText:(NSString *)postText hasImage:(BOOL)hasImage {
     
-    [self.footer endRefreshing];
+    CGFloat height = 0.0;
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(8, 36, 266, 26)];
+    textView.text = postText;
+    textView.font = [UIFont systemFontOfSize:15];
+    CGSize maximumSize = CGSizeMake(266, 9999);
+    height += 36;
+    height += [Utils getSizeOfTextView:textView withinSize:maximumSize].height;
+    height += 8;
+    if ( hasImage) {
+        height += 100 + 8;
+    }
+    height += 21 + 8;
+    height = height > 50 ? height : 50;
+    return height;
 }
 
 

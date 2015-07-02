@@ -45,6 +45,7 @@
     _imagePicker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor cloudsColor]};
     [_imagePicker.navigationBar configureFlatNavigationBarWithColor:[UIColor midnightBlueColor]];
     
+    _postTextView.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16];
     _postTextView.placeHolder = @"说点什么...";
     _postTextView.delegate = self;
 
@@ -63,11 +64,14 @@
     [_postImageViews[1] setHidden:YES];
     [_postImageViews[2] setHidden:YES];
     
+    for (UILabel *addImageSign in _addImageSigns) {
+        addImageSign.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:12];
+    }
     [_addImageSigns[1] setHidden:YES];
     [_addImageSigns[2] setHidden:YES];
     
-    UIBarButtonItem *publishBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publishPost)];
-    [self.navigationItem setRightBarButtonItem:publishBarButtonItem];
+    UIButton *publishButton = [Utils getCustomBarButtonViewWithTitle:@"发布" target:self andAction:@selector(publishPost)];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:publishButton]];
     
     _imageURLs = [[NSMutableArray alloc] init];
     
@@ -123,13 +127,13 @@
     
     NSDate *now = [NSDate date];
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy_mm_dd_HH_MM_SS"];
+    [formatter setDateFormat:@"yyyy_MM_dd_HH_mm_ss"];
     
     if ( currentImageNumber == 0) {
         [self finishUploadingImage:nil];
     } else {
         if ( ((UIImageView *)_postImageViews[0]).image != nil) {
-            AVFile *imageFile = [AVFile fileWithName:[NSString stringWithFormat:@"post_%@_%@_first", [[AVUser currentUser] username], [formatter stringFromDate:now]] data:UIImagePNGRepresentation(((UIImageView *)_postImageViews[0]).image)];
+            AVFile *imageFile = [AVFile fileWithName:[NSString stringWithFormat:@"post_%@_%@_first.png", [[AVUser currentUser] username], [formatter stringFromDate:now]] data:UIImagePNGRepresentation(((UIImageView *)_postImageViews[0]).image)];
             [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if ( succeeded) {
                     currentUploadedImageNumber ++;
@@ -141,7 +145,7 @@
         }
         
         if ( ((UIImageView *)_postImageViews[1]).image != nil) {
-            AVFile *imageFile = [AVFile fileWithName:[NSString stringWithFormat:@"post_%@_%@_second", [[AVUser currentUser] username], [formatter stringFromDate:now]] data:UIImagePNGRepresentation(((UIImageView *)_postImageViews[1]).image)];
+            AVFile *imageFile = [AVFile fileWithName:[NSString stringWithFormat:@"post_%@_%@_second.png", [[AVUser currentUser] username], [formatter stringFromDate:now]] data:UIImagePNGRepresentation(((UIImageView *)_postImageViews[1]).image)];
             [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if ( succeeded) {
                     currentUploadedImageNumber ++;
@@ -153,7 +157,7 @@
         }
         
         if ( ((UIImageView *)_postImageViews[2]).image != nil) {
-            AVFile *imageFile = [AVFile fileWithName:[NSString stringWithFormat:@"post_%@_%@_third", [[AVUser currentUser] username], [formatter stringFromDate:now]] data:UIImagePNGRepresentation(((UIImageView *)_postImageViews[2]).image)];
+            AVFile *imageFile = [AVFile fileWithName:[NSString stringWithFormat:@"post_%@_%@_third.png", [[AVUser currentUser] username], [formatter stringFromDate:now]] data:UIImagePNGRepresentation(((UIImageView *)_postImageViews[2]).image)];
             [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if ( succeeded) {
                     currentUploadedImageNumber ++;

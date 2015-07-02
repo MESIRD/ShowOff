@@ -66,21 +66,25 @@ static NSString * const reuseIdentifier = @"postCell";
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
 
     //configure cell
+    for (UIImageView *imageView in cell.postImages) {
+        imageView.image = nil;
+    }
     [cell configurePostText:[_postArray[indexPath.row] postText]
                  PostImages:[_postArray[indexPath.row] postImages]
-          withUserAvatarURL:[_postArray[indexPath.row] fetchUserAvatarURL]];
+          withUserAvatarURL:[_postArray[indexPath.row] userAvatarURL]];
+    cell.timeLabel.text = [Utils getTimeIntervalBetweenNowAndDate:[_postArray[indexPath.row] postDate]];
+    cell.postUserNickName.text = [(PostObject *)_postArray[indexPath.row] postUserNickName];
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat height = [_postCell configurePostText:[_postArray[indexPath.row] postText]
-                             PostImages:[_postArray[indexPath.row] postImages]
-                      withUserAvatarURL:[_postArray[indexPath.row] fetchUserAvatarURL]];
-    return height;
+    return [_postArray[indexPath.row] cellHeight];
 }
 
 #pragma mark - TableView DataSource update
+
 - (void)headerRefresh {
     
     [self fetchNewestPosts];
@@ -99,7 +103,7 @@ static NSString * const reuseIdentifier = @"postCell";
     AVObject *currentChannel = [queryChannel getFirstObject];
     AVQuery *queryPost = [AVQuery queryWithClassName:@"Post"];
     [queryPost whereKey:@"belongedChannel" equalTo:currentChannel];
-    [queryPost orderByDescending:@"createAt"];
+    [queryPost orderByDescending:@"createdAt"];
     queryPost.limit = 20;
     [queryPost findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if ( !error) {
@@ -111,6 +115,8 @@ static NSString * const reuseIdentifier = @"postCell";
                     post.postText = [obj objectForKey:@"postText"];
                     post.postImages = [obj objectForKey:@"postImageURLs"];
                     post.postUser = [obj objectForKey:@"postCreater"];
+                    post.postDate = [obj objectForKey:@"createdAt"];
+                    post.cellHeight = [self getCellHeightWithText:post.postText hasImage:(post.postImages.count > 0)];
                     [posts addObject:post];
                 }
                 _postArray = [posts mutableCopy];
@@ -132,6 +138,26 @@ static NSString * const reuseIdentifier = @"postCell";
 - (void)fetchOlderPosts {
     
     
+}
+
+#pragma mark - utils
+
+- (CGFloat)getCellHeightWithText:(NSString *)postText hasImage:(BOOL)hasImage {
+    
+    CGFloat height = 0.0;
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(8, 36, 266, 26)];
+    textView.text = postText;
+    textView.font = [UIFont systemFontOfSize:15];
+    CGSize maximumSize = CGSizeMake(266, 9999);
+    height += 36;
+    height += [Utils getSizeOfTextView:textView withinSize:maximumSize].height;
+    height += 8;
+    if ( hasImage) {
+        height += 100 + 8;
+    }
+    height += 21 + 8;
+    height = height > 50 ? height : 50;
+    return height;
 }
 
 

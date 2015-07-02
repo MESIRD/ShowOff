@@ -10,6 +10,7 @@
 
 @interface MSDTextView : UITextView
 
+
 @property (nonatomic)       NSString *placeHolder;
 @property (nonatomic)       CGFloat  borderWidth;
 @property (nonatomic)       UIColor  *borderColor;

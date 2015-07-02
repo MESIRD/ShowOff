@@ -7,6 +7,7 @@
 //
 
 #import "Utils.h"
+#import "Universal.h"
 
 
 @interface Utils()
@@ -35,6 +36,9 @@
     [button setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateHighlighted];
+#ifdef APPLICATION_UNIVERSAL_FONT
+    [button.titleLabel setFont:[UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16]];
+#endif
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -52,6 +56,9 @@
     textField.borderColor = [UIColor turquoiseColor];
     textField.borderWidth = 2.0f;
     textField.cornerRadius = 3.0f;
+#ifdef APPLICATION_UNIVERSAL_FONT
+    [textField setFont:[UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16]];
+#endif
 }
 
 + (UIImage *)getImageFilledByColor:(UIColor *)color {
@@ -66,9 +73,40 @@
     return retImage;
 }
 
++ (UIButton *)getCustomBarButtonViewWithTitle:(NSString *)buttonTitle target:(id)target andAction:(SEL)action {
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 24)];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [button setTitle:buttonTitle forState:UIControlStateNormal];
+    [button setTitle:buttonTitle forState:UIControlStateHighlighted];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+#ifdef APPLICATION_UNIVERSAL_FONT
+    [button.titleLabel setFont:[UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16]];
+#endif
+    return button;
+}
+
 + (CGSize)getSizeOfTextView:(UITextView *)textView withinSize:(CGSize)size {
     
     return [textView sizeThatFits:size];
+}
+
++ (NSString *)getTimeIntervalBetweenNowAndDate:(NSDate *)date {
+    
+    int timeInterval = -((int)[date timeIntervalSinceNow]);
+    if ( timeInterval/60 == 0) {
+        //within one minute
+        return [NSString stringWithFormat:@"%d秒前", timeInterval];
+    } else if ( timeInterval/3600 == 0) {
+        //within one hour
+        return [NSString stringWithFormat:@"%d分钟前", timeInterval/60];
+    } else if ( timeInterval/86400 == 0) {
+        //within one day
+        return [NSString stringWithFormat:@"%d小时前", timeInterval/3600];
+    } else {
+        //more than one day
+        return [NSString stringWithFormat:@"%d天前", timeInterval/86400];
+    }
 }
 
 + (UIImage *)clipImage:(UIImage *)image inRect:(CGRect)rect {
@@ -85,14 +123,14 @@
                                                          delegate:nil cancelButtonTitle:@"确定"
                                                 otherButtonTitles:nil];
     alertView.titleLabel.textColor = [UIColor cloudsColor];
-    alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    alertView.titleLabel.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16];
     alertView.messageLabel.textColor = [UIColor cloudsColor];
-    alertView.messageLabel.font = [UIFont flatFontOfSize:14];
+    alertView.messageLabel.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:14];
     alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
     alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
     alertView.defaultButtonColor = [UIColor cloudsColor];
     alertView.defaultButtonShadowColor = [UIColor asbestosColor];
-    alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
+    alertView.defaultButtonFont = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16];
     alertView.defaultButtonTitleColor = [UIColor asbestosColor];
     [alertView show];
 }
@@ -116,7 +154,7 @@
 
     [SVProgressHUD setBackgroundColor:[UIColor turquoiseColor]];
     [SVProgressHUD setForegroundColor:[UIColor cloudsColor]];
-    [SVProgressHUD setFont:[UIFont boldFlatFontOfSize:16]];
+    [SVProgressHUD setFont:[UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16]];
     [SVProgressHUD setSuccessImage:[UIImage imageNamed:@"correct"]];
     [SVProgressHUD showSuccessWithStatus:title];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -136,7 +174,7 @@
     
     [SVProgressHUD setBackgroundColor:[UIColor turquoiseColor]];
     [SVProgressHUD setForegroundColor:[UIColor cloudsColor]];
-    [SVProgressHUD setFont:[UIFont boldFlatFontOfSize:16]];
+    [SVProgressHUD setFont:[UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:16]];
     [SVProgressHUD setErrorImage:[UIImage imageNamed:@"error"]];
     [SVProgressHUD showErrorWithStatus:title];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
