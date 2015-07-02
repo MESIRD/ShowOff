@@ -8,6 +8,7 @@
 
 #import "PostTableView.h"
 #import "PostTableViewCell.h"
+#import "UserInfoViewController.h"
 #import "PostObject.h"
 #import "Utils.h"
 #import "NSString+SizeCalculation.h"
@@ -47,8 +48,19 @@ static NSString * const reuseIdentifier = @"postCell";
     
     //fetch hottest channels from server
     [self fetchNewestPosts];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(turnToUserInfoPage:) name:@"Tap At Post Avatar" object:nil];
 }
 
+- (void)turnToUserInfoPage:(NSNotification *)notification {
+    
+    NSDictionary *userInfo = [notification userInfo];
+    NSIndexPath *indexPath = [userInfo valueForKey:@"indexPath"];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UserInfoViewController *vc = [sb instantiateViewControllerWithIdentifier:@"UserInfoViewController"];
+    vc.user = [_postArray[indexPath.row] postUser];
+    [[Utils viewControllerWithEmbededView:self].navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark - TableView DataSource Delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -74,7 +86,7 @@ static NSString * const reuseIdentifier = @"postCell";
           withUserAvatarURL:[_postArray[indexPath.row] userAvatarURL]];
     cell.timeLabel.text = [Utils getTimeIntervalBetweenNowAndDate:[_postArray[indexPath.row] postDate]];
     cell.postUserNickName.text = [(PostObject *)_postArray[indexPath.row] postUserNickName];
-    
+    cell.indexPath = indexPath;
     return cell;
 }
 

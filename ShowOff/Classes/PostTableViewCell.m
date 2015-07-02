@@ -28,6 +28,8 @@
     _avatar.layer.borderColor = [UIColor lightGrayColor].CGColor;
     _avatar.layer.borderWidth = 1.0;
     _avatar.layer.masksToBounds = YES;
+    UITapGestureRecognizer *avatarTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAtAvatar:)];
+    [_avatar addGestureRecognizer:avatarTapRecognizer];
     
     for (UIImageView *imageView in _postImages) {
         
@@ -44,6 +46,12 @@
     
     _timeLabel.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:12];
     _postUserNickName.font = [UIFont fontWithName:APPLICATION_UNIVERSAL_FONT size:12];
+}
+
+- (void)tapAtAvatar:(UITapGestureRecognizer *)tapRecognizer {
+    
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:_indexPath, @"indexPath", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Tap At Post Avatar" object:nil userInfo:dictionary];
 }
 
 - (void)tapAtImage:(UITapGestureRecognizer *)tapRecognizer {

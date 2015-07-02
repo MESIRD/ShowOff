@@ -8,36 +8,93 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-AVOSCloud.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-FlatUIKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Pods-JTSImageViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Pods-MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Pods-SDWebImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Pods-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>09917B182275258D35C8F049</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>181E343D47E0EDEA9007BF73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2129C43EB8EB67517CF385DB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3878784C888122CADD2FB4EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54D0FB289D5805A92471F2B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6A69A1B619EBCE1B1764FA2E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6B9433B6472A36B7528808AA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71D1EBC5DE81C275FA632F2F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -48,6 +105,11 @@
 			<true/>
 		</dict>
 		<key>98BEA6F7F7768CD968E0A261</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AA617AA264AE99FE7702091B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

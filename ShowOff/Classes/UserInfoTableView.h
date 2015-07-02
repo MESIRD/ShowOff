@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <AVOSCloud/AVOSCloud.h>
 
-@interface UserInfoTableView : UITableView
+@interface UserInfoTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) AVUser *user;
+
+- (void)fetchNewestMePosts;
 
 @end

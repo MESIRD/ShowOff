@@ -10,6 +10,7 @@
 #import "FlatUIKit.h"
 #import "Universal.h"
 #import "UserNamePasswordInputViewController.h"
+#import "UserInfoViewController.h"
 #import "LoginViewController.h"
 #import "Utils.h"
 #import <AVOSCloud/AVOSCloud.h>
@@ -86,14 +87,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ( [segue.identifier isEqualToString:@"meToUserInfoSegue"]) {
+        if ( [segue.destinationViewController isKindOfClass:[UserInfoViewController class]]) {
+            UserInfoViewController *vc = (UserInfoViewController *)segue.destinationViewController;
+            vc.user = [AVUser currentUser];
+        }
+    }
 }
-*/
+
 
 @end
